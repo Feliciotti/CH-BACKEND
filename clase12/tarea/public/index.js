@@ -4,13 +4,13 @@ const socket = io.connect();
 function renderProducts(data){
     const html = data.map(product => {
         return (`<tr>
-                    <td>${product.name}</td>
+                    <td >${product.name}</td>
                     <td>${product.price}</td>
                     <td>
-                        <img src= ${product.productImg} alt="Foto del producto">
+                        <img src="${product.productImg}" alt="Foto del producto">
                     </td>
                 </tr>`)
-    })
+    }).join(" ");
     document.getElementById('products').innerHTML = html
 };
 
@@ -26,15 +26,14 @@ function addProduct(e) {
 };
 
 
-
-
 /// MENSAJES
 function render(data) {
     const html = data.map(element => {
         return (` <div>
-        <strong> ${element.author}</strong>:
-        <em>${element.text}</em>
-        </div>`);
+        <strong style="color:blue">${element.author}</strong>
+        <span style="color:brown">[${element.dateOfComment}]:<span>
+        <em style="color:green">${element.text}</em>
+            </div>`);
     }).join(" ");
     document.getElementById('messages').innerHTML = html
 }
@@ -42,9 +41,12 @@ function render(data) {
 socket.on('messages', function (data) {render(data)});
 
 function addMessage(e) {
-    const mensaje = {author: document.getElementById('username').value,
+    const commentDate = new Date().toLocaleString()
+
+    const message = {author: document.getElementById('username').value,
+                    dateOfComment: commentDate,
                     text: document.getElementById('text').value
                 };
-    socket.emit('new-message', mensaje);
+    socket.emit('new-message', message);
     return false
 }

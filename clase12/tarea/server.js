@@ -2,8 +2,6 @@
 const { log } = require('console')
 const express = require('express')
 const {Server: HttpServer} =  require('http')
-const { SocketAddress } = require('net')
-const { allowedNodeEnvironmentFlags } = require('process')
 const {Server: IOServer} =  require('socket.io')
 
 //Inicialización de app
@@ -45,4 +43,3 @@ io.on('connection', function(socket) {
         io.sockets.emit('messages', messages);
     });
 });
-
