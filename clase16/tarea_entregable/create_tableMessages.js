@@ -5,6 +5,7 @@ const knex = require ('knex')(sqLITE);
 // sintaxis async/await
 (async() => {
     try{
+        await knex.schema.dropTable('messagesRecord');
         await knex.schema.createTable('messagesRecord', table => {
             table.increments('id')
             table.string('user')

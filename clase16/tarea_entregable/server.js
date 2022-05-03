@@ -37,10 +37,11 @@ const mssgs = new ContainerSQL( sqLITE, 'messagesRecord' );
 
 
 io.on('connection', async function(socket) {
-    
+
     console.log('A client is on line');
-    let products = await prdcts.getAll()
-    let messages = await mssgs.getAll()
+    
+    let products = await prdcts.getAll();
+    let messages = await mssgs.getAll();
 
     //productos
     socket.emit('products', products)
