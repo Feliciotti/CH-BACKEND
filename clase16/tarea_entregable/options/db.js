@@ -1,4 +1,4 @@
-const options = {
+const db = {
     client:  'mysql',
     connection: {
         host: '127.0.0.1',
@@ -9,4 +9,4 @@ const options = {
     pool: {min: 2, max: 10}
 };
 
-module.exports = { options }
+module.exports = { db }

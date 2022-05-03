@@ -22,6 +22,7 @@ function addProduct(e) {
                     photoURL: document.getElementById('productImg').value
                 };
     socket.emit('new-product', product);
+    console.log(product)
     return false
 };
 
@@ -30,8 +31,8 @@ function addProduct(e) {
 function render(data) {
     const html = data.map(element => {
         return (` <div>
-        <strong style="color:blue">${element.author}</strong>
-        <span style="color:brown">[${element.dateOfComment}]:<span>
+        <strong style="color:blue">${element.user}</strong>
+        <span style="color:brown">[${element.date}]:<span>
         <em style="color:green">${element.text}</em>
             </div>`);
     }).join(" ");
@@ -43,8 +44,8 @@ socket.on('messages', function (data) {render(data)});
 function addMessage(e) {
     const commentDate = new Date().toLocaleString()
 
-    const message = {author: document.getElementById('username').value,
-                    dateOfComment: commentDate,
+    const message = {user: document.getElementById('user').value,
+                    date: commentDate,
                     text: document.getElementById('text').value
                 };
     socket.emit('new-message', message);

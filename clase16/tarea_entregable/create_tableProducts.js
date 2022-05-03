@@ -1,5 +1,5 @@
-const { options } = require('./options/db');
-const knex = require ('knex')(options);
+const { db } = require('./options/db');
+const knex = require ('knex')(db);
 
 
 // sintaxis async/await
@@ -7,9 +7,9 @@ const knex = require ('knex')(options);
     try{
         await knex.schema.createTable('products', table => {
             table.increments('id')
-            table.string('user')
+            table.string('name')
             table.float('price')
-            table.string('URLphoto')
+            table.string('photoURL')
         });
         console.log('products created');
     } catch (err) {
@@ -18,3 +18,19 @@ const knex = require ('knex')(options);
         knex.destroy();
     }
 })(); 
+
+// knex.schema.createTable('products', table => {
+//     table.increments('id')
+//     table.string('name')
+//     table.float('price')
+//     table.string('photoURL')
+// })
+//     .then(() => {
+//         console.log('Products table created');
+//     })
+//     .catch(err => {
+//         console.log(err);
+//     })
+//     .finally(() => {
+//         knex.destroy();
+//     });

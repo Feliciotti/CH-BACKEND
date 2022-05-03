@@ -1,4 +1,4 @@
-const options = {
+const sqLITE = {
     client: 'sqlite3',
     connection: {
         filename: './db/clase16.sqlite'
@@ -6,6 +6,4 @@ const options = {
     useNullAsDefault: true
 }
 
-module.exports = {
-    options
-}
+module.exports = {sqLITE}
