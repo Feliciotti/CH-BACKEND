@@ -1,0 +1,64 @@
+mongo
+show databases
+
+use ecommerce
+
+db.createCollection('products')
+db.products.insertMany([{ name: 'Juego de Tronos', author: 'George R.R. Martin', price: 4500}, { name: 'La Divina Comedia', author: 'Dante Alighieri', price: 2760}, { name: 'Cementerio de Animales', author: 'Stephen King', price: 3700}, { name: 'El Resplandor', author: 'Stephen King', price: 4500}, { name: 'Doctor Sueño', author: 'Stephen King', price: 3100}, { name: 'Cell', author: 'Stephen King', price: 2890}, { name: 'El Psicoanalista', author: 'John Katzenbach', price: 1000}, { name: 'El Fantasma de la Opera', author: 'Gaston Leroux', price: 850}, { name: 'Viaje al Centro de la Tierra', author: 'Julio Verne', price: 1200}, { name: 'El Cuervo y otros Poemas', author: 'Edgar Allan Poe', price: 700}])
+
+db.createCollection('messages')
+db.messages.insertMany([{ user: 'Mark', message: 'How was work today?'}, { user: 'Johnny', message: 'Oh, pretty good.'}, { user: 'Johnny', message: 'We got a new client, at the bank... will make a lot of money'}, { user: 'Mark', message: 'What client?'}, { user: 'Johnny', message: 'I cannot tell you, its confidential'}, { user: 'Mark', message: 'Oh, come on! why not?'}, { user: 'Johnny', message: 'No! I cant! Anyway, how`s your sex life?'}, { user: 'Mark', message: '...I cant talk about it'}, { user: 'Johnny', message: 'why not?'}, { user: 'Johnny', message: 'Oh, god. Have to run'}, { user: 'Mark', message: 'Already?'}, { user: 'Johnny', message: 'Yeah, Im sorry'}])
+
+db.products.find()
+db.messages.find()
+
+db.products.insertOne({name: 'Odisea', author: 'Homero', price: 1267})
+
+db.products.find({price: {$lt: 1000}})
+
+db.products.find({$and: [{price: {$gt: 1000}}, {price: {$lt: 3000}}]})
+
+db.products.find({price: {$gt: 3000}})
+
+db.products.find({}, {name: 1}).skip(2).limit(1).sort({price:1})
+
+db.products.updateMany({}, {$set: {stock: 100}})
+
+db.products.updateMany({price: {$gt: 4000}}, {$set: {stock: 0}})
+
+db.products.deleteMany({price : {$lt: 1000}})
+
+use admin
+
+//////user pepe clave asd456 // solo puede leer
+
+db.createUser({user: "pepe", pwd: "asd456", roles: [{ role: "read", db: "ecommerce" }]})
+
+^C
+
+mongo -u pepe -p asd456
+
+use ecommerce
+
+db.products.find()
+
+db.products.insertOne({name: 'El Cuervo y otros poemas', author: 'Edgar Allan Poe', price: 750})
+// devuelve error:
+uncaught exception: WriteCommandError({
+        "ok" : 0,
+        "errmsg" : "not authorized on ecommerce to execute command { insert: \"products\", ordered: true, lsid: { id: UUID(\"7400fabf-7797-4922-937a-d91df88f45e4\") }, $db: \"ecommerce\" }",
+        "code" : 13,
+        "codeName" : "Unauthorized"
+}) :
+WriteCommandError({
+        "ok" : 0,
+        "errmsg" : "not authorized on ecommerce to execute command { insert: \"products\", ordered: true, lsid: { id: UUID(\"7400fabf-7797-4922-937a-d91df88f45e4\") }, $db: \"ecommerce\" }",
+        "code" : 13,
+        "codeName" : "Unauthorized"
+})
+WriteCommandError@src/mongo/shell/bulk_api.js:421:48
+executeBatch@src/mongo/shell/bulk_api.js:936:23
+Bulk/this.execute@src/mongo/shell/bulk_api.js:1182:21
+DBCollection.prototype.insertOne@src/mongo/shell/crud_api.js:264:9
+@(shell):1:1
+

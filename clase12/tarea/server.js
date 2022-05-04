@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 })
 
 //Puerto y manejador de errores
-const PORT = 8080
+const PORT = 3000
 const server = httpServer.listen(PORT, () => {
     console.log(`Servidor http esuchando en el puerto ${server.address().port}`)
 });
