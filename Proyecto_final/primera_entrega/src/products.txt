@@ -1,0 +1,137 @@
+[
+  {
+    "timestamp": 1652995496065,
+    "title": "Remera",
+    "description": "ssdkfskdfskdfdf!",
+    "photo": "https://image.shutterstock.com/image-vector/img-file-document-icon-260nw-1356823577.jpg",
+    "price": 1000,
+    "stock": 350,
+    "id": 1
+  },
+  {
+    "timestamp": 1652995496066,
+    "title": "Buzo",
+    "description": "ssdkfskdfskdfdf!",
+    "photo": "https://image.shutterstock.com/image-vector/img-file-document-icon-260nw-1356823577.jpg",
+    "price": 1200,
+    "stock": 200,
+    "id": 2
+  },
+  {
+    "timestamp": 1652995496067,
+    "title": "Mochila",
+    "description": "ssdkfskdfskdfdf!",
+    "photo": "https://image.shutterstock.com/image-vector/img-file-document-icon-260nw-1356823577.jpg",
+    "price": 1200,
+    "stock": 100,
+    "id": 3
+  },
+  {
+    "timestamp": 1652995782563,
+    "title": "Album",
+    "description": "ssdkfskdfskdfdf!",
+    "photo": "https://image.shutterstock.com/image-vector/img-file-document-icon-260nw-1356823577.jpg",
+    "price": 500,
+    "stock": 250,
+    "id": 4
+  },
+  {
+    "timestamp": 1652995782576,
+    "title": "Remera",
+    "description": "ssdkfskdfskdfdf!",
+    "photo": "https://image.shutterstock.com/image-vector/img-file-document-icon-260nw-1356823577.jpg",
+    "price": 1000,
+    "stock": 350,
+    "id": 5
+  },
+  {
+    "timestamp": 1652995782577,
+    "title": "Buzo",
+    "description": "ssdkfskdfskdfdf!",
+    "photo": "https://image.shutterstock.com/image-vector/img-file-document-icon-260nw-1356823577.jpg",
+    "price": 1200,
+    "stock": 200,
+    "id": 6
+  },
+  {
+    "timestamp": 1652995782578,
+    "title": "Mochila",
+    "description": "ssdkfskdfskdfdf!",
+    "photo": "https://image.shutterstock.com/image-vector/img-file-document-icon-260nw-1356823577.jpg",
+    "price": 1200,
+    "stock": 100,
+    "id": 7
+  },
+  {
+    "timestamp": 1652995793559,
+    "title": "Album",
+    "description": "ssdkfskdfskdfdf!",
+    "photo": "https://image.shutterstock.com/image-vector/img-file-document-icon-260nw-1356823577.jpg",
+    "price": 500,
+    "stock": 250,
+    "id": 8
+  },
+  {
+    "timestamp": 1652995793573,
+    "title": "Remera",
+    "description": "ssdkfskdfskdfdf!",
+    "photo": "https://image.shutterstock.com/image-vector/img-file-document-icon-260nw-1356823577.jpg",
+    "price": 1000,
+    "stock": 350,
+    "id": 9
+  },
+  {
+    "timestamp": 1652995793574,
+    "title": "Buzo",
+    "description": "ssdkfskdfskdfdf!",
+    "photo": "https://image.shutterstock.com/image-vector/img-file-document-icon-260nw-1356823577.jpg",
+    "price": 1200,
+    "stock": 200,
+    "id": 10
+  },
+  {
+    "timestamp": 1652995793575,
+    "title": "Mochila",
+    "description": "ssdkfskdfskdfdf!",
+    "photo": "https://image.shutterstock.com/image-vector/img-file-document-icon-260nw-1356823577.jpg",
+    "price": 1200,
+    "stock": 100,
+    "id": 11
+  },
+  {
+    "timestamp": 1652996011870,
+    "title": "Album",
+    "description": "ssdkfskdfskdfdf!",
+    "photo": "https://image.shutterstock.com/image-vector/img-file-document-icon-260nw-1356823577.jpg",
+    "price": 500,
+    "stock": 250,
+    "id": 12
+  },
+  {
+    "timestamp": 1652996011884,
+    "title": "Remera",
+    "description": "ssdkfskdfskdfdf!",
+    "photo": "https://image.shutterstock.com/image-vector/img-file-document-icon-260nw-1356823577.jpg",
+    "price": 1000,
+    "stock": 350,
+    "id": 13
+  },
+  {
+    "timestamp": 1652996011885,
+    "title": "Buzo",
+    "description": "ssdkfskdfskdfdf!",
+    "photo": "https://image.shutterstock.com/image-vector/img-file-document-icon-260nw-1356823577.jpg",
+    "price": 1200,
+    "stock": 200,
+    "id": 14
+  },
+  {
+    "timestamp": 1652996011887,
+    "title": "Mochila",
+    "description": "ssdkfskdfskdfdf!",
+    "photo": "https://image.shutterstock.com/image-vector/img-file-document-icon-260nw-1356823577.jpg",
+    "price": 1200,
+    "stock": 100,
+    "id": 15
+  }
+]
