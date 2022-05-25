@@ -27,7 +27,7 @@ app.get('/', middleware, (req, res) =>{
 
 app.post('/login', (req, res) => {
     req.session.name = req.body.name
-    res.redirect('/home')
+    res.redirect('/')
 })
 
 app.get('/login', (req, res) =>{
