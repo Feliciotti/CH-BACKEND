@@ -41,11 +41,11 @@ app.get('/login', (req, res) =>{
 
 
 app.get('/logout', (req, res) =>{
-    const name = req.session?.name
+    const name = 'el cacas'
     if (name) {
         req.session.destroy(err => {
             if (!err) {
-                res.render(path.join(process.cwd(), 'views/logout.html'), { name })
+                res.render(path.join(process.cwd(), 'views/logout.ejs'), { name })
             } else {
                 res.redirect('/')
             }
