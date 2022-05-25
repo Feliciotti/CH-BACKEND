@@ -49,10 +49,12 @@ class ProductsAPI {
     };
 
     updateById(id, newData){
-        const productIndex = this.products.findIndex(product => product.id === id)
+        const products = fs.readFileSync(this.route, "utf-8");
+        const productsParsed = JSON.parse(products);     
+        const productIndex = productsParsed.findIndex(product => product.id === id)
         if (productIndex === -1) return -1
 
-        this.products[productIndex] = { ...this.products[productIndex], title: newData.title, description: newData.description, photo: newData.photo, price: newData.price, stock: newData.stock }
+        productsParsed[productIndex] = { ...productsParsed[productIndex], title: newData.title, description: newData.description, photo: newData.photo, price: newData.price, stock: newData.stock }
     };
     
     ultimo(){
@@ -75,6 +77,15 @@ class ProductsAPI {
         });
         return productsInCart
     }
+
+    updateCartById(id, newData){
+        const products = fs.readFileSync(this.route, "utf-8");
+        const productsParsed = JSON.parse(products);
+        const productIndex = productsParsed.findIndex(product => product.id === id)
+        if (productIndex === -1) return -1
+
+        productsParsed[productIndex] = { ...productIndex[productIndex], products:[newData.products] }
+    };
 
     async getAll() {
         try {
