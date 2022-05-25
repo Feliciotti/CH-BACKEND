@@ -6,6 +6,9 @@ const FileStore = FileStoreModule(session);
 
 const app = express();
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
 app.use(session ( {
     store: new FileStore({path: './sessions', ttl: 10, retries: 0}),
     secret: 'byAntonioBanderas',
@@ -35,13 +38,13 @@ app.get('/login', (req, res) =>{
     if (nameUser) {
         res.redirect('/')
     } else {
-        res.sendFile(path.join(process.cwd(), 'views/partials/login.html'))
+        res.sendFile(path.join(process.cwd(), 'views/login.html'))
     }
 });
 
 
 app.get('/logout', (req, res) =>{
-    const name = 'el cacas'
+    const name = req.session?.name
     if (name) {
         req.session.destroy(err => {
             if (!err) {
