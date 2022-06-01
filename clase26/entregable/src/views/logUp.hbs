@@ -1,7 +1,11 @@
 <div>
-    <h1>Iniciar sesión</h1>
+    <h1> Registro </h1>
     <br>
-    <form action="/login" method="post" role="form" autocomplete="off">
+    <form action="/logup" method="post" role="form" autocomplete="off">
+        <div>
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" required>
+        </div>
 
         <div>
             <label for="email">e-mail</label>
@@ -14,11 +18,11 @@
         </div>
 
         <div>
-            <input type="submit" value="Login">
+            <input type="submit" value="Registrarme">
         </div>
     </form>
     <hr>
     <div>
-        <button onclick="location.href = '/logup'">Registrarme</button>
+        <button onclick="location.href = '/login'">Ya tengo una cuenta</button>
     </div>
 </div>

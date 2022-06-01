@@ -1,8 +1,8 @@
-import mongoose from 'mongoose'
-import keys from "./keys.js";
+import mongoose from 'mongoose';
+import settings from './settings.js';
 
 const client =
-mongoose.connect(keys.mongodb.URI)
+mongoose.connect(settings.mongoAtlas.uri)
     .then(db => console.log('Database connected'))
     .catch(err => console.log(err))
 

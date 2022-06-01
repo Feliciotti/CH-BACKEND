@@ -1,3 +1,3 @@
-export {homeRouter} from './home.js'
-export {loginRouter} from './login.js'
-export {signupRouter} from './signup.js'
+export { home } from './web/home.js';
+export { logs } from './web/logIn-Out.js';
+export { logUp } from './web/logUp.js';
