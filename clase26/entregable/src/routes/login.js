@@ -1,21 +1,24 @@
 import { Router } from 'express';
+import passport from 'passport';
 import path from 'path'
 
 const loginRouter = Router();
 
 loginRouter.route('/login')
     .get((req, res) => {
-        const nameUser = req.session?.name
-        if (nameUser) {
+        const email = req.session?.email
+        if (email) {
             res.redirect('/')
         } else {
             res.sendFile(path.join(process.cwd(), '../views/login.html'))
         }
     })
-    .post((req, res) => {
-        req.session.name = req.body.name
-        res.redirect('/')
+    .post(passport.authenticate('local-login', {
+        successRedirect: '/',
+        failureRedirect: '/login',
+        passReqToCallback: true
     })
+ );
 
 
 
@@ -25,7 +28,7 @@ loginRouter.route('/logout')
         if (name) {
             req.session.destroy(err => {
                 if (!err) {
-                    res.render(path.join(process.cwd(), 'views/logout.ejs'), { name })
+                    res.sendFile(path.join(process.cwd(), '../views/logout.html'), { name })
                 } else {
                     res.redirect('/')
                 }
