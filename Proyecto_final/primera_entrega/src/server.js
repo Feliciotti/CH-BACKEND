@@ -7,8 +7,10 @@ import MongoStore from 'connect-mongo';
 import { Server as HttpServer } from 'http'
 import { Server as Socket } from 'socket.io'
 
+//set
 import settings from './settings';
 
+//routes
 import { homeRouter, cartRouter, loginRouter, productsApiRouter, productsRouter} from './routes/index.js';
 
 

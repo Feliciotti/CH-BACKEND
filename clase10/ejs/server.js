@@ -5,7 +5,6 @@ const app = express()
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
 
 //Puerto y manejador de errores
 const PORT = 8080

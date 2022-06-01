@@ -1,4 +1,4 @@
-export default DATABASE = {
+export default {
     fileSystem: {
         path: './db/files'
     },
