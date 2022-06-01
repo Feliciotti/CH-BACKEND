@@ -1,9 +1,11 @@
 //dependencias
+import path from "path";
 import express from "express";
 import passport from "passport";
 import flash from 'connect-flash';
 import session from "express-session";
 import MongoStore from 'connect-mongo';
+import exphbs from 'express-handlebars';
 
 //routes
 import { homeRouter, loginRouter, signupRouter} from "./routes/index.js";
@@ -17,8 +19,18 @@ import './databases.js';
 import './passport/local-auth.js'
 
 //settings
+app.set('views', path.join(path.dirname(''), 'views'));
+app.engine('.hbs', exphbs.engine({
+    defaultLayout: 'main',
+    layoutsDir: path.join(app.get('views'), 'layouts'),
+    extname: 'hbs'
+}));
+app.set('view engine', '.hbs');
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+
 
 //middlewares
 app.use(session({

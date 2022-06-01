@@ -1,0 +1,29 @@
+
+    <h1>Formulario de registro </h1>
+
+        {{#if (loginMessage)}}
+        <h1>{{loginMessage}}</h1>
+        {{/if}}
+        
+    <form action="/signup" method="POST">
+        <div>
+            <label for="name">Nombre</label>
+            <input id="name" type="text" name="name" required>
+        </div>
+        <br>
+        <div>
+            <label for="email">e-mail</label>
+            <input id="email" type="email" name="email" required>
+        </div>
+        <br>
+        <div>
+            <label for="password">Contraseña</label>
+            <input id="password" type="password" name="password" required>
+        </div>
+    
+        <button type="submit">Send</button>
+    </form>
+    <hr>
+    <div>
+        <button onclick="location.href = '/login'" >Ya estoy registrado</button>
+    </div>

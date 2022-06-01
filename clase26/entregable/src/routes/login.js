@@ -10,7 +10,7 @@ loginRouter.route('/login')
         if (email) {
             res.redirect('/')
         } else {
-            res.sendFile(path.join(process.cwd(), '../views/login.html'))
+            res.render(path.join(process.cwd(), './views/login.hbs'))
         }
     })
     .post(passport.authenticate('local-login', {

@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-
 <body>
     <div>
         <h1>User</h1>
         <br>
+
+        {{#if (loginMessage)}}
+        <h1>{{loginMessage}}</h1>
+        {{/if}}
+
         <form action="/login" method="post">
             <div>
                 <label for="email">e-mail</label>
@@ -29,5 +25,3 @@
         <button onclick="location.href = '/signup'">Registrarse</button>
     </div>
 </body>
-
-</html>

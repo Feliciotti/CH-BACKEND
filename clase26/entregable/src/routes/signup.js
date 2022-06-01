@@ -11,7 +11,7 @@ signupRouter.route('/signup')
         if (nameUser) {
             res.redirect('/')
         } else {
-            res.render(path.join(process.cwd(), '../views/signup.ejs'))
+            res.render(path.join(process.cwd(), './views/signup.hbs'))
         }
     })
     .post(passport.authenticate('local-signup', {
