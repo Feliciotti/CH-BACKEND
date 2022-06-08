@@ -3,7 +3,7 @@ import process from 'process';
 
 const INFO = Router();
 
-INFO.route('/')
+INFO.route('/info')
     .get((req, res) => {
         res.send(`
             Sistema operativo: ${process.platform}

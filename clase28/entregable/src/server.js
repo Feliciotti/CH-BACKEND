@@ -58,7 +58,13 @@ app.use(logUp)
 
 //------------------ PUERTO -----------------------------
 
-const PORT = process.env.PORT || 4000
+function param(p) {
+    const index = process.argv.indexOf(p);
+    return process.argv[index + 1]
+}
+const portParam = param('--port')
+const PORT = portParam || 8080;
+
 const server = app.listen(PORT, () => {
     console.log(`Servidor http esuchando en el puerto ${server.address().port}`)
 });

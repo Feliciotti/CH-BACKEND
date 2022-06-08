@@ -1,4 +1,5 @@
 import { isAuth } from '../../passport/isAuth.js'
+import passport from 'passport';
 import { Router } from 'express';
 
 const home = Router();

@@ -40,8 +40,8 @@ io.on('connection', async socket => {
     addMensajesHandlers(socket, io.sockets)
 });
 
-//-----------------------------------------------------------
-//Rutas---------
+//-------------------- RUTAS -------------------------------
+
 // API
 app.use(productsApiRouter)
 
@@ -52,8 +52,8 @@ app.use(loginRouter)
 app.use(productsRouter)
 
 
-//-----------------------------------------------------------
-//Puerto e incio
+//------------------ Puerto e incio ---------------------------
+//
 const PORT = process.env.PORT || 4000
 const server = app.listen(PORT, () => {
     console.log(`Servidor http esuchando en el puerto ${server.address().port}`)
