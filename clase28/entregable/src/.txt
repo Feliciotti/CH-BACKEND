@@ -1,0 +1,14 @@
+'Título del proceso:' + process.title;
+'Uso de la memoria:' + process.memoryUsage();
+
+
+
+'Sistema operativo:' + process.plataform;
+'Versión NODE:' + process.version;
+//memoria total reservada
+//path de ejecución
+'ID del preceso:' + process.pid;
+'Directorio actual de trabajo:' + process.cwd();
+
+
+minimist
