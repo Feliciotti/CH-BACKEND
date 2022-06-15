@@ -1,30 +1,16 @@
 //------------------- DEPENDENCIAS -------------------
 import express from 'express';
 
-import { Server as HttpServer } from 'http';
-import { Server as Socket } from 'socket.io';
-
-import { productsFaker } from './routes/faker.js';
-
-import productsSettings from './routes/ws/prdcts.js';
-import messagesSettings from './routes/ws/mssgs.js';
+import { products } from './routes/products.js'
+import { productsFaker } from './routes/faker.js'
 
 //------------------- server settings -------------------
 
-// server, socket init
-const app = express();
-const httpServer = new HttpServer(app);
-const io = new Socket(httpServer);
+const app = express()
 
-// socket settings
-io.on('connection', async socket => {
-    productsSettings(socket, io.sockets)
-    messagesSettings(socket, io.sockets)
-});
-
-// server settings
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
@@ -33,7 +19,9 @@ app.get('/', (req, res) => {
 
 //------------------- ROUTES -------------------
 
+app.use(products)
 app.use(productsFaker)
+
 
 //------------------- PORT -------------------
 

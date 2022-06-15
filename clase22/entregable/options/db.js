@@ -1,4 +1,4 @@
-export default {
+const db = {
     client:  'mysql',
     connection: {
         host: '127.0.0.1',
@@ -8,3 +8,5 @@ export default {
     },
     pool: {min: 2, max: 10}
 };
+
+export { db }

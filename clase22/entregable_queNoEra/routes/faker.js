@@ -3,6 +3,6 @@ import { createNFakeProducts } from '../mock/faker.js'
 
 const productsFaker = Router()
 
-productsFaker.get('/api/productos-test', (req, res) => { res.json(createNFakeProducts(5))})
+productsFaker.get('/api/productos-test', (req, res) => { res.json(createNFakeProducts(5)) })
 
 export { productsFaker }
