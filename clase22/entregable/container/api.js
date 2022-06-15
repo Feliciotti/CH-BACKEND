@@ -1,18 +1,18 @@
-import settings from '../settings.js'
+import fs from 'fs';
 
 class FScontainer{
-    constructor(file) {
-        this.file = `${settings.fileSystem.path}/${file}.json`
+    constructor(route) {
+        this.route = route;
     };
     
     async getAll() {
         try {
-            const array = await fs.promises.readFile(this.file, "utf-8");
+            const array = await fs.promises.readFile(this.route, "utf-8");
             const arrayParsed = JSON.parse(array);
             return arrayParsed;
         } catch (err) {
-            if(err.code === 'ENOENT'){ // significa que el archivo no existe, por ende lo podemos crear con un array vacio
-                await fs.promises.writeFile(this.file, JSON.stringify([], null, 2))
+            if(err.code === 'ENOENT'){
+                await fs.promises.writeFile(this.route, JSON.stringify([], null, 2))
                 return "Se creó el archivo";
             };
             return err
@@ -29,7 +29,7 @@ class FScontainer{
 
             array.push(e);
 
-            await fs.promises.writeFile(this.file, JSON.stringify(array, null, 2))
+            await fs.promises.writeFile(this.route, JSON.stringify(array, null, 2))
 
             return e
 
@@ -58,7 +58,7 @@ class FScontainer{
             const updatedItem = {...array[index], ...data}
             array[index] = updatedItem
 
-            await fs.writeFile(this.file, JSON.stringify(array))
+            await fs.writeFile(this.route, JSON.stringify(array))
             
             return updatedItem
             
@@ -75,15 +75,21 @@ class FScontainer{
         }
         array.splice(index, 1)
         try {
-            await fs.writeFile(this.file, JSON.stringify(array, null, 2))
+            await fs.writeFile(this.route, JSON.stringify(array, null, 2))
         } catch (error) {
             throw new Error(`${error}`)
         };
     };
 
+    async lastAdded(){
+        const array = await this.getAll();  
+        const lastAdded = array[array.length - 1]
+        return lastAdded
+    };
+
     async delete(){
         try {
-            await fs.writeFile(this.file, JSON.stringify([], null, 2))
+            await fs.writeFile(this.route, JSON.stringify([], null, 2))
         } catch (error) {
             throw new Error(error)
         };
@@ -91,5 +97,17 @@ class FScontainer{
     
 };
 
+const productsFS = new FScontainer("./productos.txt")
 
-export {FScontainer}
+async function testContenedor() {
+    await productsFS.save({ title: "producto1", price: 200 })
+
+    const products = await productsFS.getAll();
+
+    return products
+}
+
+testContenedor();
+
+
+export { productsFS }

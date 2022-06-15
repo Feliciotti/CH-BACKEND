@@ -11,7 +11,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.use('/static', express.static(__dirname + '/public'));
+app.use(express.static('public'))
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html')
