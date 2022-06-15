@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { createNFakeProducts } from '../../mock/products.js';
+import { createNproducts } from '../../mock/products.js';
 
-const productsApiRouter = new Router()
+const productsApiRouter = Router()
 
-productsApiRouter.get('/api/productos-create', (req, res) => { res.json(createNFakeProducts(10)) })
+productsApiRouter.get('/api/productos-fake', (req, res) => { res.json(createNproducts(10)) })
 
 export { productsApiRouter };

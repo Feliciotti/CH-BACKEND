@@ -1,9 +1,11 @@
+import {} from 'dotenv/config';
+
 export default {
     fileSystem: {
         path: './db/files'
     },
     mongoAtlas: {
-        client: 'mongodb',
+        client: process.env.SELECTED_DB,
         uri: "mongodb+srv://amy:mongopassnro00@ecommerce.q5uzu.mongodb.net/?retryWrites=true&w=majority"
     },
     sqlite3: {

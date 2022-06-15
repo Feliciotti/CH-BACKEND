@@ -4,30 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos</title>
+    <title>Productos Faker</title>
 </head>
 
 <body>
 
-    <div>
-        <div>
-            <div id="products"></div>
-        </div>
-    </div>
-
     <script>
 
         function fetchProductosMock() {
-            return fetch('/api/productos-test')
+            return fetch('/api/productos-fake')
                 .then(res => res.json())
         }
 
         function makeHtmlTable(products) {
-            return fetch('/views/partials/productsTable.ejs')
+            return fetch('partials/fake.hbs')
                 .then(res => res.text())
-                .then(partial => {
-                    const template = Handlebars.compile(partial);
-                    const html = template({ productos })
+                .then(fake => {
+                    const template = Handlebars.compile(fake);
+                    const html = template({ products })
                     return html
                 })
         }
