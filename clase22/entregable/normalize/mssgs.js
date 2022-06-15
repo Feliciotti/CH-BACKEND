@@ -1,4 +1,4 @@
-import { normalize, schema } from 'normalizr'
+import { normalize, schema } from 'normalizr';
 
 // Definimos un esquema de autor
 const schemaAuthor = new schema.Entity('user',
