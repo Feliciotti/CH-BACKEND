@@ -49,17 +49,22 @@ class FScontainer{
     };
 
     async deleteById(id){
-        const array = await this.getAll();  
-        const index = array.findIndex(product => product.id === id);
-        if (index == -1) {
-            throw new Error(`No se puede borrar. Item: ${id} no encontrado.`)
-        }
-        array.splice(index, 1)
         try {
-            await fs.writeFile(this.route, JSON.stringify(array, null, 2))
-        } catch (error) {
-            throw new Error(`${error}`)
-        };
+            const array = await this.getAll();  
+            const index = array.findIndex(product => product.id === id);
+            if (index == -1) {
+                throw new Error(`No se puede borrar. Item: ${id} no encontrado.`)
+            }
+            array.splice(index, 1)
+
+            fs.writeFile(this.route, JSON.stringify(array, null, 2), (err) => {
+            });
+
+            return('Deleted')
+            
+        } catch (error){
+            error
+        }
     };
 
     async lastAdded(){
@@ -77,6 +82,5 @@ class FScontainer{
     };
     
 };
-
 
 export { FScontainer }

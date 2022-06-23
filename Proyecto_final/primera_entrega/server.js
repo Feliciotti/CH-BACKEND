@@ -16,7 +16,8 @@ const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
 
 // server settings
-
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 app.use(express.static('./public'))
 

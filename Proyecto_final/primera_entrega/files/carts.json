@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "name": "Cart1",
+    "products": [],
+    "id": 1
+  },
+  {
+    "products": [],
+    "id": 2
+  }
+]

@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { isAdmin } from '../../middleware/admin.js';
 import { prdcts } from '../../server.js';
 
 const productsRouter = Router();
@@ -9,42 +10,49 @@ productsRouter.route('/productos')
         res.status(200).send(products)
         }
     )
-    .post(async (req, res) => {
-        const { title, price, thumbnail, description, stock } = req.body
-        if (!title|| !price || !thumbnail || !description || !stock) return res.send('Completar todos los campos')
-        prdcts.save({ title, price, thumbnail, description, stock })
+    .post(isAdmin, async (req, res) => {
+        const { title, price, thumbnail, desc, stock } = req.body
+        if (!title|| !price || !thumbnail || !desc || !stock) return res.send('Completar todos los campos')
+        prdcts.save({ title, price, thumbnail, desc, stock })
         res.status(201).send(`Item ${prdcts.ultimo()} agregado`)
     }
     )
 
 productsRouter.route('/productos/:id')
-    .put(async (req, res) => {
+    .put(isAdmin, async (req, res) => {
         const { id } = req.params
-        const {title, description, photo, price, stock} = req.body
+        const {title, price, thumbnail, desc, stock} = req.body
 
-        const result = prdcts.updateById(id, {title, description, photo, price, stock})
+        const result = prdcts.updateById(id, {title, price, thumbnail, desc, stock})
 
         if (id === -1) res.status(404).send('No se encontró el producto')
 
         res.status(200).json(result)
     })
 
+    .delete(isAdmin, async (req, res) => {
+        const {id} = req.params
+
+        const deleted = await prdcts.deleteById(id)
+
+        res.send(deleted)
+    })
+
 productsRouter.route('/productos/:id?')
     .get(async (req, res) => {
-        const idProduct = req.params.id
-        if (idProduct > prdcts.getAll().length) {
-            res.send({error: 'el producto no existe'})
+        const id = req.params.id
+
+        let idMax = await prdcts.getAll()
+
+        if (id > idMax.length) {
+            res.status(404).send({error: 'el producto no existe'})
         }
-        res.send(prdcts.getById(idProduct))
+
+        let product = await prdcts.getById(id)
+
+        res.status(200).send(product)
     })
     
-    .delete(async (req, res) => {
-        const {id} = req.params
-        if(id){
-            const deleted = await prdcts.deleteById(id)
-            res.json(deleted)
-            return
-        }
-    })
+
 
 export { productsRouter };

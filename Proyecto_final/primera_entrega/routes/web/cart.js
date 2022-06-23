@@ -27,13 +27,12 @@ cartRouter.route('/carrito')
     });
 
 cartRouter.route('/carrito/:id')
-    .delete((req, res) => {
-        const idCart = [req.params.id]
-        cartsApi.deleteById(idCart)
-        res.json({
-            "status": "200",
-            "id": req.params.id
-        })
+    .delete(async (req, res) => {
+
+        const id = req.params.id 
+        const deleted = await cartsApi.deleteById(id)
+        
+        res.send(deleted)
     });
     
 cartRouter.route('/carrito/:id/productos')
