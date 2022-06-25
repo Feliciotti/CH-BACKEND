@@ -31,7 +31,7 @@ class FScontainer{
 
             await fs.promises.writeFile(this.route, JSON.stringify(array, null, 2))
 
-            return e
+            return e.id
 
         } catch (error) {
             return error
@@ -51,14 +51,16 @@ class FScontainer{
     async deleteById(id){
         try {
             const array = await this.getAll();  
-            const index = array.findIndex(product => product.id === id);
+            const index = array.findIndex(product => product.id == id);
+
             if (index == -1) {
-                throw new Error(`No se puede borrar. Item: ${id} no encontrado.`)
+                return `No se puede borrar. Item: ${id} no encontrado.`;
             }
             array.splice(index, 1)
 
-            fs.writeFile(this.route, JSON.stringify(array, null, 2), (err) => {
-            });
+            await fs.promises.writeFile(this.route,
+                JSON.stringify(array, null, 2),
+                (err) => {err});
 
             return('Deleted')
             
@@ -75,7 +77,7 @@ class FScontainer{
 
     async delete(){
         try {
-            await fs.writeFile(this.route, JSON.stringify([], null, 2))
+            await fs.promises.writeFile(this.route, JSON.stringify([], null, 2))
         } catch (error) {
             throw new Error(error)
         };
