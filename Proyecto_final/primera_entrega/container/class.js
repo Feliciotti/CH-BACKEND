@@ -69,11 +69,28 @@ class FScontainer{
         }
     };
 
-    async lastAdded(){
-        const array = await this.getAll();  
-        const lastAdded = array[array.length - 1]
-        return lastAdded
-    };
+    async updateById(id, newData) {
+        try {
+            const array = await this.getAll();
+    
+            const index = array.findIndex((e) => e.id == id);
+
+            if (index == -1) {
+                return `No se encontro el item: ${id}.`;
+            }
+            // acá lo que hacemos es acceder a la posición del elemento, y le asignamos un nuevo objeto,
+            //copiando todas las propiedades que ya tiene el elemento y reemplazando con las propiedades
+            //de newData
+            array[index] = { ...array[index], ...newData };
+
+            await fs.promises.writeFile(this.route, JSON.stringify(array, null, 2));
+    
+            return array[index];
+
+        } catch (error) {
+            return error;
+        }
+    }
 
     async delete(){
         try {
