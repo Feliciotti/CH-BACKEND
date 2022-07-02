@@ -1,0 +1,149 @@
+• Servidor con nodemon verificando el número de procesos tomados por node • 
+
+
+--- EJECUCIÓN FORKER en visual studio ---
+$ nodemon server.js --port 8081
+
+>...
+[nodemon] starting `node server.js --port 8081`
+Nro. de proceso 11648 está escuchando en puerto 8081
+
+
+
+--- PROCESOS en powershell ---
+...\src>src> tasklist /fi "imagename eq node.exe"
+
+>
+Image Name                     PID Session Name        Session#    Mem Usage
+========================= ======== ================ =========== ============
+node.exe                      8988 Console                    2     27,372 K
+node.exe                     11648 Console                    2     30,144 K
+
+
+
+
+
+
+
+--- EJECUCIÓN CLUSTER en visual studio ---
+$ nodemon cluster.js 
+
+>... 
+[nodemon] starting `node cluster.js`        
+MASTER MASTER 10056
+Worker 1844 started
+Worker 1736 started 
+Worker 11032 started
+1844 está escuchando en puerto 8081
+1736 está escuchando en puerto 8081
+11032 está escuchando en puerto 8081
+Worker 8500 started
+8500 está escuchando en puerto 8081
+
+
+
+--- PROCESOS en powershell ---
+..\src> tasklist /fi "imagename eq node.exe"
+
+>
+Image Name                     PID Session Name        Session#    Mem Usage
+========================= ======== ================ =========== ============
+node.exe                      9616 Console                    3     27,628 K
+node.exe                     10056 Console                    3     24,716 K
+node.exe                      1736 Console                    3     24,504 K
+node.exe                      1844 Console                    3     24,560 K
+node.exe                     11032 Console                    3     24,564 K
+node.exe                      8500 Console                    3     24,840 K
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------
+
+• Servidor con Forever • 
+
+-----   EJECUCIÓN en cmd    -----
+...entregable\src>forever start server.js --port 8081
+>
+info:    Forever processing file: server.js
+
+
+----- PROCESOS en cmd -----
+..entregable\src>forever list
+>
+info:    Forever processes running
+data:        uid    command                                 script                                                                          forever pid         id       logfile                            uptime
+data:    [0] isMH   "C:\Program Files\nodejs\node.exe"      C:\Users\Amy\Desktop\CH-Backend\clase30\entregable\src\server.js --port 8081    4892                11860    C:\Users\Amy\.forever\isMH.log     0:0:2:7.906000000000006
+
+
+
+--- FINALIZACIÓN ---
+...entregable\src>forever stopall
+>
+info:    Forever stopped processes:
+data:        uid  command                            script                                                                       forever pid   id logfile                        uptime
+data:    [0] isMH "C:\Program Files\nodejs\node.exe" C:\Users\Amy\Desktop\CH-Backend\clase30\entregable\src\server.js --port 8081 4892    11860    C:\Users\Amy\.forever\isMH.log 0:0:12:28.136999999999944
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------
+
+• Servidor con PM2
+
+----- EJECUCIÓN FORK en visual studio -----
+$ pm2 start server.js --name="Server" --watch -- 8081
+>
+│ 0   │ Server    │ default     │ 1.0.0   │ fork    │ 8040     │ 0s     │ 0    │ online    │ 0%       │ 33.3mb   │ Amy      │ enabled  │    
+└─────┴───────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+
+
+----- EJECUCIÓN CLUSTER en visual studio -----
+$ pm2 start server.js --name="Server1" --watch -i max -- 8082
+>
+┌─────┬────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id  │ name       │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├─────┼────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0   │ Server     │ default     │ 1.0.0   │ fork    │ 8040     │ 111s   │ 0    │ online    │ 0%       │ 33.3mb   │ Amy      │ enabled  │   
+│ 1   │ Server1    │ default     │ 1.0.0   │ cluster │ 6368     │ 1s     │ 0    │ online    │ 0%       │ 32.9mb   │ Amy      │ enabled  │   
+│ 2   │ Server1    │ default     │ 1.0.0   │ cluster │ 7820     │ 1s     │ 0    │ online    │ 0%       │ 33.1mb   │ Amy      │ enabled  │   
+│ 3   │ Server1    │ default     │ 1.0.0   │ cluster │ 3544     │ 1s     │ 0    │ online    │ 0%       │ 33.2mb   │ Amy      │ enabled  │   
+│ 4   │ Server1    │ default     │ 1.0.0   │ cluster │ 12020    │ 0s     │ 0    │ online    │ 0%       │ 33.6mb   │ Amy      │ enabled  │   
+└─────┴────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘   
+
+
+----- PROCESOS -----
+$ pm2 list
+
+
+----- FINALIZACIÓN -----
+$ pm2 stop Server
+[PM2] Applying action stopProcessId on app [Server](ids: [ 0 ])
+[PM2] [Server](0) ✓
+
+$ pm2 stop Server1
+[PM2] Applying action stopProcessId on app [Server1](ids: [ 1, 2, 3, 4 ])
+[PM2] [Server1](1) ✓
+[PM2] [Server1](2) ✓
+[PM2] [Server1](3) ✓
+[PM2] [Server1](4) ✓
+
+$ pm2 delete Server Server1
+[PM2] Applying action deleteProcessId on app [Server](ids: [ 0 ])
+[PM2] [Server](0) ✓
+[PM2] Applying action deleteProcessId on app [Server1](ids: [ 1, 2, 3, 4 ])
+[PM2] [Server1](1) ✓
+[PM2] [Server1](2) ✓
+[PM2] [Server1](3) ✓
+[PM2] [Server1](4) ✓
+
+-----------------------------------------------------------------------------
+
+Verificación en sistema operativo para todos los procesos:
+>tasklist
