@@ -1,24 +1,28 @@
-import { CartFiles } from './carts/cartFS.js';
-import { CartMongo } from './carts/cartMongo.js';
+import { CartFS } from './cart/cartFS.js';
+import { CartMongo } from './cart/cartMongo.js';
+import { CartFirebase } from './cart/cartFirebase.js';
 
-import { ProductsFiles } from './products/productsFS.js';
-import { ProductsMongo } from './products/productsMongo.js';
+import { ProductsFS } from './products/prdctsFS.js';
+import { ProductsMongo } from './products/prdctsMongo.js';
+import { ProductsFirebase } from './products/prdctsFirebase.js';
+
+const DATABASES = {
+    mongo: {
+        cartApi: new CartMongo(),
+        productsApi: new ProductsMongo()
+    },
+    firebase: {
+        cartApi: new CartFirebase(),
+        productsApi: new ProductsFirebase()
+    },
+    archivo: {
+        cartApi: new CartFS(),
+        productsApi: new ProductsFS()
+    }
+}
 
 const DB = process.env.SELECTED_DB || 'mongo'
 
-let productsDao
-let cartDao
+const {cartApi, productsApi} = DATABASES[DB]
 
-switch(DB){
-    case 'mongodb': 
-        productsDao = new CartMongo()
-        cartDao = new ProductsMongo()
-        break
-    
-    default:
-        productsDao = new CartFiles()
-        cartDao = new ProductsFiles()
-        break      
-}
-
-export { productsDao, cartDao }
+export {cartApi, productsApi}

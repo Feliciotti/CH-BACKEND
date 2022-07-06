@@ -1,9 +1,9 @@
 import { FScontainer } from '../../db/container/index.js';
 
-class CartFiles extends FScontainer {
+class CartFS extends FScontainer {
     constructor(){
-        super('cart')
+        super('carts')
     }
-};
+}
 
-export {CartFiles};
+export { CartFS }

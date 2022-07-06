@@ -4,6 +4,6 @@ class ProductsMongo extends MongoContainer {
     constructor(){
         super('products')
     }
-};
+}
 
-export {ProductsMongo};
+export { ProductsMongo }

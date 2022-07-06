@@ -2,8 +2,8 @@ import { MongoContainer } from '../../db/container/index.js';
 
 class CartMongo extends MongoContainer {
     constructor(){
-        super('cart')
+        super('carts')
     }
-};
+}
 
-export {CartMongo};
+export { CartMongo }

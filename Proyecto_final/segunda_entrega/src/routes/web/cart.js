@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import { cartDao, productsDao } from '../../daos/index.js';
+import { cartApi, productsApi } from '../../daos/index.js';
 
 const cartRouter = Router();
 
 cartRouter.route('/carrito')
-    .get (async(req, res) =>{
+    .get (async (req, res) =>{
         try {
-            const carts = await cartDao.getAll()
+            const carts = await cartApi.getAll()
             res.status(200).json(carts)
         } catch (error) {
             res.json(error)
@@ -15,8 +15,8 @@ cartRouter.route('/carrito')
     .post(async (req, res) => {
         try {
             const { name } = req.body
-            const cart = await cartDao.save({name, products: []})
-    
+            const cart = await cartApi.save({name, products: []})
+
             res.status(200).json(cart)
         } catch (error) {
             res.json(error)
@@ -24,36 +24,40 @@ cartRouter.route('/carrito')
     });
 
 cartRouter.route('/carrito/:id')
-    .delete((req, res) => {
-        const idCart = [req.params.id]
-        cartDao.deleteById(idCart)
-        res.json({
-            "status": "200",
-            "id": req.params.id
-        })
+    .delete(async (req, res) => {
+
+        const id = req.params.id 
+        const deleted = await cartApi.deleteById(id)
+
+        res.send(deleted)
     });
     
 cartRouter.route('/carrito/:id/productos')
-    .get((req, res) => {
-        const idCart = req.params.id
-        if (idCart > cartDao.getAll().length) {
-            res.send({error: 'el carrito no existe'})
-        }
+    .get( async (req, res) => {
+        try {
+            const {id} = req.params
+            const cartProducts = await cartApi.getById(id)
 
-        res.send(cartDao.getProductsInCart(idCart))
+            if(!cartProducts.products)
+                return res.json({message: 'Carrito no encontrado'})
+
+            res.json(cartProducts.products)
+
+        } catch (error) {
+            res.json(error)
+        }
     })
 
     .post( async (req, res) => {
         try {
             const {id} = req.params
             const {productId} = req.body
-            const cart = await cartDao.getById(id)
-            const product = await productsDao.getById(productId)
+            const cart = await cartApi.getById(id)
+            const product = await productsApi.getById(productId)
             cart.products =  [...cart.products, product]
-            
-            const result = await cartDao.update(id, carrito)
-    
-            res.status(201).json(result)
+
+            const result = await cartApi.updateById(id, cart);
+            res.status(201).json(result);
     
         } catch (error) {
             res.json(error)
