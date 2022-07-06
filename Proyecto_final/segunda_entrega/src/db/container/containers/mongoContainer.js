@@ -15,9 +15,9 @@ class MongoContainer {
     async getAll() {
         try {
             const array = await this.coleccion.find().toArray()
-            
             return array
         } catch (error) {
+            
             throw new Error(error)        
         }
     }

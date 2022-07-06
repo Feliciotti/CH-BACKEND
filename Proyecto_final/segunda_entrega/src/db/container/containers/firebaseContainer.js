@@ -17,20 +17,9 @@ class FirebaseContainer {
 
     async getAll() {
         try {
-            const querySnapshot = await query.get()
-            let docs = querySnapshot.docs;
+            const snapshot = this.coleccion
 
-            const res = docs.map((doc) => ({
-                id: doc.id,
-                title: doc.data().title,
-                thumbnail: doc.data().thumbnail,
-                desc: doc.data().desc,
-                stock: doc.data().stock
-                
-                })
-            )
-
-            return res
+            return snapshot.docs.map(doc => doc.data());
 
         } catch (error) {
             throw new Error(error)        
@@ -39,6 +28,8 @@ class FirebaseContainer {
 
     async save(e){
         try {
+            const query = await this.getAll()
+
             let id = 1
             let doc = query.doc(`${id}`)
             const created = await doc.create( { e } )
@@ -53,6 +44,8 @@ class FirebaseContainer {
 
     async getById(id){
         try {
+            const query = await this.getAll()
+
             const doc = query.doc(id)
             const item = await doc.get()
             const res = item.data()
@@ -66,6 +59,8 @@ class FirebaseContainer {
 
     async updateById(id, newData){
         try {
+            const query = await this.getAll()
+
             const doc = query.doc(id)
 
             let item = await doc.update({newData});
@@ -79,6 +74,7 @@ class FirebaseContainer {
 
     async deleteById(id){
         try {
+            const query = await this.getAll()
 
             const doc = query.doc(id);
             const item = await doc.delete()

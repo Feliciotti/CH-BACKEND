@@ -21,7 +21,7 @@ const DATABASES = {
     }
 }
 
-const DB = process.env.SELECTED_DB || 'mongo'
+const DB = process.env.SELECTED_DB
 
 const {cartApi, productsApi} = DATABASES[DB]
 

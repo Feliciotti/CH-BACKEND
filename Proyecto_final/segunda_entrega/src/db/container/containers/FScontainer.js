@@ -8,12 +8,14 @@ class FScontainer{
     
     async getAll() {
         try {
-            const array = await fs.promises.readFile(this.route, "utf-8");
+            const array = await fs.promises.readFile(this.fileName, "utf-8");
+            
             const arrayParsed = JSON.parse(array);
             return arrayParsed;
+
         } catch (err) {
-            if(err.code === 'ENOENT'){
-                await fs.promises.writeFile(this.route, JSON.stringify([], null, 2))
+            if(err.code == 'ENOENT'){
+                await fs.promises.writeFile(this.fileName, JSON.stringify([], null, 2))
                 return "Se creó el archivo";
             };
             return err
@@ -30,7 +32,7 @@ class FScontainer{
 
             array.push(e);
 
-            await fs.promises.writeFile(this.route, JSON.stringify(array, null, 2))
+            await fs.promises.writeFile(this.fileName, JSON.stringify(array, null, 2))
 
             return e.id
 
@@ -59,7 +61,7 @@ class FScontainer{
             }
             array.splice(index, 1)
 
-            await fs.promises.writeFile(this.route,
+            await fs.promises.writeFile(this.fileName,
                 JSON.stringify(array, null, 2),
                 (err) => {err});
 
@@ -79,12 +81,10 @@ class FScontainer{
             if (index == -1) {
                 return `No se encontro el item: ${id}.`;
             }
-            // acá lo que hacemos es acceder a la posición del elemento, y le asignamos un nuevo objeto,
-            //copiando todas las propiedades que ya tiene el elemento y reemplazando con las propiedades
-            //de newData
+
             array[index] = { ...array[index], ...newData };
 
-            await fs.promises.writeFile(this.route, JSON.stringify(array, null, 2));
+            await fs.promises.writeFile(this.fileName, JSON.stringify(array, null, 2));
     
             return array[index];
 
@@ -95,7 +95,7 @@ class FScontainer{
 
     async delete(){
         try {
-            await fs.promises.writeFile(this.route, JSON.stringify([], null, 2))
+            await fs.promises.writeFile(this.fileName, JSON.stringify([], null, 2))
         } catch (error) {
             throw new Error(error)
         };
