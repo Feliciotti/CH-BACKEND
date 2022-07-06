@@ -17,25 +17,24 @@ class FirebaseContainer {
 
     async getAll() {
         try {
-            const snapshot = this.coleccion
+            const querySnapshot = await this.coleccion.get()
 
-            return snapshot.docs.map(doc => doc.data());
+            return querySnapshot.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }))
+
 
         } catch (error) {
-            throw new Error(error)        
+            throw new Error(error)
         }
     }
 
     async save(e){
         try {
-            const query = await this.getAll()
+            const added = await this.coleccion.add( { e } )
 
-            let id = 1
-            let doc = query.doc(`${id}`)
-            const created = await doc.create( { e } )
-            id++
-
-            return created
+            return added
 
         } catch (error) {
             throw new Error(error)
@@ -44,13 +43,9 @@ class FirebaseContainer {
 
     async getById(id){
         try {
-            const query = await this.getAll()
+            const item = await this.collection.doc(id).get()
 
-            const doc = query.doc(id)
-            const item = await doc.get()
-            const res = item.data()
-
-            return res
+            return item.data()
 
         } catch (error) {
             return error
@@ -59,13 +54,9 @@ class FirebaseContainer {
 
     async updateById(id, newData){
         try {
-            const query = await this.getAll()
+            const updated = await this.collection.doc(id).update(newData)
 
-            const doc = query.doc(id)
-
-            let item = await doc.update({newData});
-
-            return `Actualizado: ${ item }`
+            return `Actualizado: ${ updated }`
 
         } catch (error) {
             throw new Error(error)
@@ -74,12 +65,9 @@ class FirebaseContainer {
 
     async deleteById(id){
         try {
-            const query = await this.getAll()
+            const deleted = await this.collection.doc(id).delete()
 
-            const doc = query.doc(id);
-            const item = await doc.delete()
-
-            return `Eliminado: ${ item }`
+            return `Eliminado: ${ deleted }`
             
         } catch (error) {
             throw new Error(error)
