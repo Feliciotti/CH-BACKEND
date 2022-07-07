@@ -14,8 +14,8 @@ cartRouter.route('/carrito')
     })
     .post(async (req, res) => {
         try {
-            const { name } = req.body
-            const cart = await cartApi.save({name, products: []})
+            const { title } = req.body
+            const cart = await cartApi.save({title, products: []})
 
             res.status(200).json(cart)
         } catch (error) {

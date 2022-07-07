@@ -47,6 +47,7 @@ class MongoContainer {
         try {
             const updated = this.collection.findOneAndUpdate({_id:ObjectId(id)}, {$set: newData})
             return updated
+
         } catch (error) {
             throw new Error(error)
         }
