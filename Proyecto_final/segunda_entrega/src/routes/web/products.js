@@ -32,7 +32,7 @@ productsRouter.route('/productos/:id')
         res.status(200).json(result)
     })
 
-    .delete( async (req, res) => {
+    .delete(isAdmin, async (req, res) => {
         const {id} = req.params
 
         const deleted = await productsApi.deleteById(id)
