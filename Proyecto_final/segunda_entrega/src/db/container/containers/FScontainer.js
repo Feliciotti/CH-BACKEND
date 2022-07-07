@@ -25,16 +25,15 @@ class FScontainer{
     async save(e) {
         try {
             const array = await this.getAll();
-
-            const lastAdded = array[array.length-1]
             
+            const lastAdded = array[array.length-1]
             e.id = lastAdded ? lastAdded.id + 1 : 1
-
+            
             array.push(e);
 
             await fs.promises.writeFile(this.fileName, JSON.stringify(array, null, 2))
 
-            return e.id
+            return `${e.title}, con id: ${e.id}`
 
         } catch (error) {
             return error

@@ -10,13 +10,14 @@ productsRouter.route('/productos')
         res.status(200).send(products)
         }
     )
-    .post(async (req, res) => {
+    .post(isAdmin, async (req, res) => {
         const { title, price, thumbnail, desc, stock } = req.body
         if (!title|| !price || !thumbnail || !desc || !stock) return res.send('Completar todos los campos')
 
-        await productsApi.save({ title, price, thumbnail, desc, stock })
-        res.status(201).send(`Item ${productsApi.save()} agregado`)
-    }
+        let added = await productsApi.save({ title, price, thumbnail, desc, stock })
+
+        res.status(201).send(`Agregado: ${added}`)
+        }
     )
 
 productsRouter.route('/productos/:id')
@@ -31,7 +32,7 @@ productsRouter.route('/productos/:id')
         res.status(200).json(result)
     })
 
-    .delete(isAdmin, async (req, res) => {
+    .delete( async (req, res) => {
         const {id} = req.params
 
         const deleted = await productsApi.deleteById(id)

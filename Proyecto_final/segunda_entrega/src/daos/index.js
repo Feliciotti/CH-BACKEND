@@ -15,7 +15,7 @@ const DATABASES = {
         cartApi: new CartFirebase(),
         productsApi: new ProductsFirebase()
     },
-    archivo: {
+    files: {
         cartApi: new CartFS(),
         productsApi: new ProductsFS()
     }

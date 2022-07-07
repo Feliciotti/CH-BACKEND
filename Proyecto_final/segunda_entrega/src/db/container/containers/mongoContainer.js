@@ -9,12 +9,12 @@ const database = client.db('ecommerce')
 
 class MongoContainer {
     constructor(collectionName){
-        this.coleccion = database.collection(collectionName)
+        this.collection = database.collection(collectionName)
     }
 
     async getAll() {
         try {
-            const array = await this.coleccion.find().toArray()
+            const array = await this.collection.find().toArray()
             return array
         } catch (error) {
             
@@ -24,9 +24,9 @@ class MongoContainer {
 
     async save(e){
         try {
-            const added = await this.coleccion.insertOne(e)
-            
-            return added
+            await this.collection.insertOne(e)
+
+            return `${e.title}, bajo id: ${e._id}`
 
         } catch (error) {
             throw new Error(error)
@@ -35,7 +35,7 @@ class MongoContainer {
 
     async getById(id){
         try {
-            const resultado = await this.coleccion.findOne({_id: ObjectId(id)})
+            const resultado = await this.collection.findOne({_id: ObjectId(id)})
             return resultado
 
         } catch (error) {
@@ -45,7 +45,7 @@ class MongoContainer {
 
     async updateById(id, newData){
         try {
-            const updated = this.coleccion.findOneAndUpdate({_id:ObjectId(id)}, {$set: newData})
+            const updated = this.collection.findOneAndUpdate({_id:ObjectId(id)}, {$set: newData})
             return updated
         } catch (error) {
             throw new Error(error)
@@ -55,7 +55,7 @@ class MongoContainer {
     async deleteById(id){
         try {
 
-            const deleted = await this.coleccion.deleteOne({_id: ObjectId(id)})
+            const deleted = await this.collection.deleteOne({_id: ObjectId(id)})
             return deleted
             
         } catch (error) {
