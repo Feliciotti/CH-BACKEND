@@ -12,14 +12,14 @@ const db = getFirestore()
 
 class FirebaseContainer {
     constructor(collectionName){
-        this.coleccion = db.collection(collectionName)
+        this.collection = db.collection(collectionName)
     }
 
     async getAll() {
         try {
-            const querySnapshot = await this.coleccion.get()
+            const querySnapshot = await this.collection.get()
 
-            return querySnapshot.map(doc => ({
+            return querySnapshot.docs.map(doc => ({
                 id: doc.id,
                 ...doc.data()
             }))
@@ -32,7 +32,7 @@ class FirebaseContainer {
 
     async save(e){
         try {
-            const added = await this.coleccion.add( { e } )
+            const added = await this.collection.add(e)
 
             return added
 
@@ -65,7 +65,7 @@ class FirebaseContainer {
 
     async deleteById(id){
         try {
-            const deleted = await this.collection.doc(id).delete()
+            const deleted = await this.collection.docs(id).delete()
 
             return `Eliminado: ${ deleted }`
             
