@@ -6,11 +6,11 @@ const apiRandom = Router();
 apiRandom.route('/api/random')
     .get((req, res) => {
 
-        const forked = fork('./api-random/random.js')
+        const forked = fork('src/api-random/random.js')
+
+        forked.send('start')
         forked.on('message', msg => {
-            if(msg == 'sended'){
-                res.end(`${output}`)
-            }
+            res.send(msg)
         })
     });
 
