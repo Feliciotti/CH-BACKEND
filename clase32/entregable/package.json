@@ -1,0 +1,20 @@
+{
+  "name": "server.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "benchmark.js",
+    "start": "0x server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autocannon": "^7.9.0",
+    "compression": "^1.7.4",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.18",
+    "winston": "^3.8.1"
+  }
+}
