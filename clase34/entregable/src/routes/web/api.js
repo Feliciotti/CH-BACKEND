@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { fork } from 'child_process';
+import { logger } from '../../logs/log.js';
 
 const apiRandom = Router();
 
@@ -12,6 +13,8 @@ apiRandom.route('/api/random')
         forked.on('message', msg => {
             res.send(msg)
         })
+
+        logger.info('ok')
     });
 
 export { apiRandom }

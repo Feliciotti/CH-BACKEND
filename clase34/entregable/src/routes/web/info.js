@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import { logger } from '../../logs/log.js';
+
 import process from 'process';
 import os from 'os';
 
@@ -6,6 +8,8 @@ const INFO = Router();
 
 INFO.route('/info')
     .get((req, res) => {
+
+        logger.info('ok')
 
         const numcpus = os.cpus().length;
 

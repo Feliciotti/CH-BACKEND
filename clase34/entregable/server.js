@@ -1,6 +1,6 @@
 //-----------------------------------------
 import express from 'express';
-import { INFO, apiRandom } from './src/routes/index.js';
+import { INFO, apiRandom, none } from './src/routes/index.js';
 
 //------------------------------------------
 const app = express();
@@ -8,11 +8,12 @@ const app = express();
 //------------------ RUTAS -----------------
 app.use(INFO)
 app.use(apiRandom)
+app.use(none)
 
 
 //------------------ PUERTO ----------------
 
-const PORT = parseInt(process.argv[2]) || 8080;
+const PORT = process.env.PORT || 8080;
 
 
 const server = app.listen(PORT, () => {
