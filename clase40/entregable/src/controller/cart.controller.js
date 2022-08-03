@@ -1,6 +1,19 @@
+// -------- MIDDLEWARE --------
+import { isAdmin } from '../middleware/admin.js';
+
+// ----------------
+import { CartsFactory } from '../factory/carts.factory.js'
+import { productsDao } from './products.controller.js'
+
+// ------- DB SELECT ---------
+const DB = process.env.SELECTED_DB || 'mongo'
+const cartsDao = CartsFactory.create(DB)
+
+
+// -------- FUNCTIONS --------
 async function getCart(req, res) {
     try {
-        const carts = await cartFactory.getAll()
+        const carts = await cartsDao.getAll()
         res.status(200).json(carts)
     } catch (error) {
         res.json(error)
@@ -9,7 +22,7 @@ async function getCart(req, res) {
 async function postCart(req, res) {
     try {
         const { title } = req.body
-        const cart = await cartFactory.save({title, products: []})
+        const cart = await cartsDao.save({title, products: []})
 
         res.status(200).json(cart)
     } catch (error) {
@@ -19,7 +32,7 @@ async function postCart(req, res) {
 
 async function deleteCart(req, res) {
     const id = req.params.id 
-    const deleted = await cartFactory.deleteById(id)
+    const deleted = await cartsDao.deleteById(id)
 
     res.send(deleted)
 }
@@ -27,7 +40,7 @@ async function deleteCart(req, res) {
 async function getCartProducts(req, res) {
     try {
         const {id} = req.params
-        const cartProducts = await cartFactory.getById(id)
+        const cartProducts = await cartsDao.getById(id)
 
         if(!cartProducts.products)
             return res.json({message: 'Carrito no encontrado'})
@@ -43,11 +56,11 @@ async function postCartProducts(req, res) {
     try {
         const {id} = req.params
         const {productId} = req.body
-        const cart = await cartFactory.getById(id)
-        const product = await productsFactory.getById(productId)
+        const cart = await cartsDao.getById(id)
+        const product = await productsDao.getById(productId)
         cart.products =  [...cart.products, product]
 
-        const result = await cartFactory.updateById(id, cart);
+        const result = await cartsDao.updateById(id, cart);
         res.status(201).json(result);
 
     } catch (error) {

@@ -1,10 +1,22 @@
-import { FSapi} from '../../service/index.js';
+import { FScontainer } from '../index.js';
 
-class CartFS extends FSapi {
+// ------- SINGLETON -------
+let instance = null
+// -------------------------
+
+class CartFS extends FScontainer {
     constructor(){
         super('carts')
     }
-    
+
+    // ------- SINGLETON -------
+    static getInstance(){
+        if(!instance){
+            instance = new CartFS
+        }
+
+        return instance
+    }
 }
 
 export { CartFS }

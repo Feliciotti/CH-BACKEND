@@ -1,10 +1,22 @@
-import { FirebaseApi } from '../../service/index.js';
+import { FirebaseContainer } from '../index.js';
 
-class CartFirebase extends FirebaseApi {
+// ------- SINGLETON -------
+let instance = null
+// -------------------------
+
+class CartFirebase extends FirebaseContainer {
     constructor(){
         super('carts')
     }
-    
+
+    // ------- SINGLETON -------
+    static getInstance(){
+        if(!instance){
+            instance = new CartFirebase
+        }
+
+        return instance
+    }
 }
 
 export { CartFirebase }
