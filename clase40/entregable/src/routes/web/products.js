@@ -4,7 +4,8 @@ import {
     putProduct,
     delProduct,
     getPById
-} from '../../controller/products.controller.js'
+} from '../../controller/products.controller.js';
+import { Router } from 'express';
 
 const productsRouter = Router();
 

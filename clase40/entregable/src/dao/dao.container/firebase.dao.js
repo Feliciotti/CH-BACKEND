@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { initializeApp, applicationDefault } from "firebase-admin/app";
 import { getFirestore } from 'firebase-admin/firestore'
-import { firebase } from '../../../config/index.js';
+import { firebase } from '../../config/index.js';
 
 initializeApp({
     credential: applicationDefault(),
@@ -34,6 +34,7 @@ class FirebaseContainer {
         try {
             await this.collection.add(e)
 
+            return `${e.title} con id: ${e.id}}`
         } catch (error) {
             throw new Error(error)
         }
@@ -52,8 +53,10 @@ class FirebaseContainer {
 
     async updateById(id, newData){
         try {
-            const item = await this.collection.doc(id).update(newData)
-            return item
+            const updated = await this.collection.doc(id).update(newData)
+
+            return `Actualizado: ${ updated }`
+
         } catch (error) {
             throw new Error(error)
         }
@@ -61,13 +64,14 @@ class FirebaseContainer {
 
     async deleteById(id){
         try {
-            await this.collection.doc(id).delete()
+            const deleted = await this.collection.doc(id).delete()
 
+            return `Eliminado: ${ deleted }`
+            
         } catch (error) {
             throw new Error(error)
         }
     }
-
 }
 
 export { FirebaseContainer }

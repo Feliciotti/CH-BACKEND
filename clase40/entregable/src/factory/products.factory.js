@@ -1,7 +1,7 @@
 import { ProductsFS, ProductsMongo, ProductsFirebase } from '../dao/index.js';
 
 class ProductsFactory {
-    create(db){
+    static create(db){
         switch(db) {
             case 'mongo':
                 return ProductsMongo.getInstance()
@@ -9,12 +9,12 @@ class ProductsFactory {
             break;
 
             case 'firebase':
-                return new ProductsFirebase.getInstance()
+                return ProductsFirebase.getInstance()
 
             break;
 
-            case 'fs':
-                return new ProductsFS.getInstance()
+            case 'files':
+                return ProductsFS.getInstance()
         }
     }
 }

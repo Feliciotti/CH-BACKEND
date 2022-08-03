@@ -1,14 +1,6 @@
 // -------- MIDDLEWARE --------
 import { isAdmin } from '../middleware/admin.js';
-
-// ----------------
-import { CartsFactory } from '../factory/carts.factory.js'
-import { productsDao } from './products.controller.js'
-
-// ------- DB SELECT ---------
-const DB = process.env.SELECTED_DB || 'mongo'
-const cartsDao = CartsFactory.create(DB)
-
+import { productsDao, cartsDao } from './db.controller.js';
 
 // -------- FUNCTIONS --------
 async function getCart(req, res) {

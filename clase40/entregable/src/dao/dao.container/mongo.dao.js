@@ -10,8 +10,8 @@ class MongoContainer {
         try {
             const array = await this.collection.find().toArray()
             return array
-
         } catch (error) {
+            
             throw new Error(error)        
         }
     }
@@ -20,6 +20,8 @@ class MongoContainer {
         try {
             await this.collection.insertOne(e)
 
+            return `${e.title}, bajo id: ${e._id}`
+
         } catch (error) {
             throw new Error(error)
         }
@@ -27,8 +29,8 @@ class MongoContainer {
 
     async getById(id){
         try {
-            const result = await this.collection.findOne({_id: ObjectId(id)})
-            return result
+            const resultado = await this.collection.findOne({_id: ObjectId(id)})
+            return resultado
 
         } catch (error) {
             return error
@@ -50,7 +52,7 @@ class MongoContainer {
 
             const deleted = await this.collection.deleteOne({_id: ObjectId(id)})
             return deleted
-
+            
         } catch (error) {
             throw new Error(error)
         }
