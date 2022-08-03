@@ -1,23 +1,17 @@
-
-import {MongoClient, ObjectId} from 'mongodb'
-import { mongo } from '../../../config/index.js'
-
-const client = new MongoClient(mongo.uri)
-await client.connect()
-const database = client.db('ecommerce')
-
+import { ObjectId } from 'mongodb'
+import { MongoClientDB } from '../../db/db.container/mongoDB.js'
 
 class MongoContainer {
-    constructor(collectionName){
-        this.collection = database.collection(collectionName)
+    constructor(){
+        this.collection = new MongoClientDB()
     }
 
     async getAll() {
         try {
             const array = await this.collection.find().toArray()
             return array
+
         } catch (error) {
-            
             throw new Error(error)        
         }
     }
@@ -26,8 +20,6 @@ class MongoContainer {
         try {
             await this.collection.insertOne(e)
 
-            return `${e.title}, bajo id: ${e._id}`
-
         } catch (error) {
             throw new Error(error)
         }
@@ -35,8 +27,8 @@ class MongoContainer {
 
     async getById(id){
         try {
-            const resultado = await this.collection.findOne({_id: ObjectId(id)})
-            return resultado
+            const result = await this.collection.findOne({_id: ObjectId(id)})
+            return result
 
         } catch (error) {
             return error
@@ -58,7 +50,7 @@ class MongoContainer {
 
             const deleted = await this.collection.deleteOne({_id: ObjectId(id)})
             return deleted
-            
+
         } catch (error) {
             throw new Error(error)
         }

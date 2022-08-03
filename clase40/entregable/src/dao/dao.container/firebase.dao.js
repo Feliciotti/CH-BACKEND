@@ -34,7 +34,6 @@ class FirebaseContainer {
         try {
             await this.collection.add(e)
 
-            return `${e.title} con id: ${e.id}}`
         } catch (error) {
             throw new Error(error)
         }
@@ -53,10 +52,8 @@ class FirebaseContainer {
 
     async updateById(id, newData){
         try {
-            const updated = await this.collection.doc(id).update(newData)
-
-            return `Actualizado: ${ updated }`
-
+            const item = await this.collection.doc(id).update(newData)
+            return item
         } catch (error) {
             throw new Error(error)
         }
@@ -64,14 +61,13 @@ class FirebaseContainer {
 
     async deleteById(id){
         try {
-            const deleted = await this.collection.doc(id).delete()
+            await this.collection.doc(id).delete()
 
-            return `Eliminado: ${ deleted }`
-            
         } catch (error) {
             throw new Error(error)
         }
     }
+
 }
 
 export { FirebaseContainer }

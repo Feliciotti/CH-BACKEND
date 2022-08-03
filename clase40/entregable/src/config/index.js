@@ -1,5 +1,8 @@
 const mongo = {
-    uri: process.env.MONGO_DB_URI
+    db: {
+        collection: 'ecommerce',
+        uri: process.env.MONGO_DB_URI
+    }
 };
 
 const firebase = {

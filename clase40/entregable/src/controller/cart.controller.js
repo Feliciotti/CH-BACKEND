@@ -1,10 +1,10 @@
 async function getCart(req, res) {
-        try {
-            const carts = await cartFactory.getAll()
-            res.status(200).json(carts)
-        } catch (error) {
-            res.json(error)
-        }
+    try {
+        const carts = await cartFactory.getAll()
+        res.status(200).json(carts)
+    } catch (error) {
+        res.json(error)
+    }
 }
 async function postCart(req, res) {
     try {

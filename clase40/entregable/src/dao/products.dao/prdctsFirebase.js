@@ -1,12 +1,15 @@
-import { FirebaseContainer } from '../../db/container/index.js';
+import { FirebaseContainer } from '../index.js';
 
+// ------- SINGLETON -------
 let instance = null
+// -------------------------
 
 class ProductsFirebase extends FirebaseContainer {
     constructor(){
         super('products')
     }
 
+    // ------- SINGLETON -------
     static getInstance(){
         if(!instance){
             instance = new ProductsFirebase
@@ -14,6 +17,7 @@ class ProductsFirebase extends FirebaseContainer {
 
         return instance
     }
+
 }
 
 export { ProductsFirebase }
