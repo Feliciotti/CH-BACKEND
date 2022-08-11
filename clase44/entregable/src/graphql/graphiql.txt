@@ -1,0 +1,132 @@
+POST PRODUCT
+req
+mutation{
+    postProduct(
+      title: "Graphi Cup",
+      price: 1,
+      thumbnail: "www.gqlc.com",
+      desc: "sdasdasd",
+      stock: 1
+    ){
+      title,
+      price,
+      thumbnail,
+      desc,
+      stock
+    }
+}
+
+res
+{
+  "data": {
+    "postProduct": {
+      "title": null,
+      "price": null,
+      "thumbnail": null,
+      "desc": null,
+      "stock": null
+    }
+  }
+}
+
+req
+mutation{
+    postProduct(
+      title: "Graphi Cup 2",
+      price: 1,
+      thumbnail: "www.gqlc.com",
+      desc: "sdasdasd",
+      stock: 1
+    ){
+      title,
+      price,
+      thumbnail,
+      desc,
+      stock
+    }
+}
+console.log:
+Graphi Cup 2, con id: 10
+
+----------------------------------------------------------------------------
+
+GET PRODUCTS
+req
+query{
+  getProducts {
+    title
+  }
+}
+
+res
+{
+  "data": {
+    "getProducts": [
+      {
+        "title": "Taza Halloween - Gatos"
+      },
+      {
+        "title": "Taza Dragón"
+      },
+      {
+        "title": "Taza Halloween"
+      },
+      {
+        "title": "Taza Halloween"
+      },
+      {
+        "title": "Axios Cup"
+      },
+      {
+        "title": "Mocha Chai Cup"
+      },
+      {
+        "title": "Mocha Chai Cup"
+      },
+      {
+        "title": "Graphi Cup"
+      }
+    ]
+  }
+}
+
+----------------------------------------------------------------------------
+
+GET BY ID
+req
+query{
+  productById(id: 2) {
+    title
+  }
+}
+
+res
+{
+  "data": {
+    "productById": {
+      "title": "Taza Halloween - Gatos"
+    }
+  }
+}
+
+
+----------------------------------------------------------------------------
+
+DELETE BY ID
+req
+
+mutation{
+  delProduct(id: 9) {
+    id
+  }
+}
+
+{
+  "data": {
+    "delProduct": {
+      "id": null
+    }
+  }
+}
+
+reviso products.json y ya no están los productos.
