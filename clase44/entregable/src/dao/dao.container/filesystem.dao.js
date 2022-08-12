@@ -1,3 +1,4 @@
+import { KeyObject } from 'crypto';
 import fs from 'fs';
 import { files } from '../../config/index.js';
 
@@ -12,6 +13,7 @@ class FScontainer{
             
             const arrayParsed = JSON.parse(array);
             return arrayParsed;
+
 
         } catch (err) {
             if(err.code == 'ENOENT'){
@@ -59,7 +61,7 @@ class FScontainer{
                 return `No se puede borrar. Item: ${id} no encontrado.`;
             }
             array.splice(index, 1)
-
+        
             await fs.promises.writeFile(this.fileName,
                 JSON.stringify(array, null, 2),
                 (err) => {err});
@@ -73,19 +75,32 @@ class FScontainer{
 
     async updateById(id, newData) {
         try {
-            const array = await this.getAll();
-    
-            const index = array.findIndex((e) => e.id == id);
+            // const array = await this.getAll();
+            // const index = array.findIndex((e) => e.id == id);
+            
+            // if (index == -1) {
+            //     return `No se encontro el item: ${id}.`;
+            // }
+            console.log(newData);
 
-            if (index == -1) {
-                return `No se encontro el item: ${id}.`;
-            }
+            
+            Object.value(newData).forEach(key => {
 
-            array[index] = { ...array[index], ...newData };
+                if (newData[key] === undefined) {
+                    delete newData[key];    
+                }
 
-            await fs.promises.writeFile(this.fileName, JSON.stringify(array, null, 2));
-    
-            return array[index];
+            })
+            
+            console.log(newData);
+                    
+            // array[index] = { ...array[index], ...newData };
+                    
+            // await fs.promises.writeFile(
+            //     this.fileName,
+            //     JSON.stringify(array, null, 2));
+
+            // return array[index];
 
         } catch (error) {
             return error;

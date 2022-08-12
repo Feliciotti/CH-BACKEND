@@ -48,15 +48,11 @@
     "id": 7
   },
   {
-    "title": "Mocha Chai Cup",
-    "price": 10,
-    "thumbnail": "www.somecup.mocha.com",
-    "desc": "Mocha Chai Cup",
-    "stock": 10,
+    "title": "Graphi Cup",
+    "price": 1,
+    "thumbnail": "www.gqlc.com",
+    "desc": "sdasdasd",
+    "stock": 1,
     "id": 8
-  },
-  {
-    "title": "New Graphi Title",
-    "id": 9
   }
 ]
