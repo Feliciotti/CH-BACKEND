@@ -130,3 +130,26 @@ mutation{
 }
 
 reviso products.json y ya no están los productos.
+
+----------------------------------------------------------------------------
+PUT BY ID
+req
+mutation{
+    putProduct(
+      id: 8,
+      title: "New Title"
+    ) {
+      id
+      title
+    }
+}
+
+res
+{
+  "data": {
+    "putProduct": {
+      "id": "8",
+      "title": "New Title"
+    }
+  }
+}

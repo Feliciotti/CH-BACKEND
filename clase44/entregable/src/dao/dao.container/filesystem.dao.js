@@ -75,32 +75,30 @@ class FScontainer{
 
     async updateById(id, newData) {
         try {
-            // const array = await this.getAll();
-            // const index = array.findIndex((e) => e.id == id);
+            const array = await this.getAll();
+            const index = array.findIndex((e) => e.id == id);
             
-            // if (index == -1) {
-            //     return `No se encontro el item: ${id}.`;
-            // }
-            console.log(newData);
-
+            if (index == -1) {
+                return `No se encontro el item: ${id}.`;
+            }
             
-            Object.value(newData).forEach(key => {
+            Object.keys(newData).forEach(key => {
 
                 if (newData[key] === undefined) {
-                    delete newData[key];    
-                }
-
-            })
             
-            console.log(newData);
+                    delete newData[key];
+            
+                }
+            
+            });
                     
-            // array[index] = { ...array[index], ...newData };
+            array[index] = { ...array[index], ...newData };
                     
-            // await fs.promises.writeFile(
-            //     this.fileName,
-            //     JSON.stringify(array, null, 2));
+            await fs.promises.writeFile(
+                this.fileName,
+                JSON.stringify(array, null, 2));
 
-            // return array[index];
+            return array[index];
 
         } catch (error) {
             return error;
