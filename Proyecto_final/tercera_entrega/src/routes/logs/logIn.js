@@ -10,7 +10,7 @@ import { Router } from 'express';
 
 const loginLink = Router();
 
-loginLink.route('/')
+loginLink.route('/login')
     .get( logIn )
     .post( logInPost )
 
