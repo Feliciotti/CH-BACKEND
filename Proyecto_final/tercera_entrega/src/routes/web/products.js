@@ -1,6 +1,6 @@
 import { Router } from 'express';
 // -------- MIDDLEWARE --------
-import { isAdmin } from '../middleware/admin.js';
+import { isAdmin } from '../../middleware/admin.js';
 //-------
 import {
     getProduct,
@@ -8,7 +8,7 @@ import {
     putProduct,
     delProduct,
     productById
-} from '../../controller/products.controller.js';
+} from '../../controller/index.js';
 //-------------------------------------------------
 
 const productsRouter = Router();

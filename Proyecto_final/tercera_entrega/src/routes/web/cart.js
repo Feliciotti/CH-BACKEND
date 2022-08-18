@@ -4,7 +4,7 @@ import {
     deleteCart,
     getCartProducts,
     postCartProducts
-} from '../../controller/cart.controller.js';
+} from '../../controller/index.js';
 import { Router } from 'express';
 
 //---------------------------------------
