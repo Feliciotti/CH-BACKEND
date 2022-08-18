@@ -13,7 +13,6 @@ import {
     productsRouter,
     cartRouter,
     loginLink,
-    logoutLink,
     logupLink
 } from './routes/index.js';
 import { mongo } from './config/index.js'
@@ -62,11 +61,12 @@ app.set('view engine', '.hbs');
 
 //------------------- Routes -------------------
 
-app.use(cartRouter)
-app.use(productsRouter)
-app.use(loginLink)
-app.use(logoutLink)
-app.use(logupLink)
+app.use(
+    cartRouter,
+    productsRouter,
+    loginLink,
+    logupLink
+)
 
 
 // ------------------- PORT -------------------
