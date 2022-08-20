@@ -4,12 +4,12 @@ import bcryptjs from 'bcryptjs'
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  name: String,
-  email: String,
-  password: String,
-  age: Number,
-  address: String,
-  phoneNumber: Number
+    name: String,
+    email: String,
+    password: String,
+    age: Number,
+    address: String,
+    phoneNumber: Number
 });
 
 userSchema.methods.encryptPassword = (password) => {
@@ -22,4 +22,4 @@ userSchema.methods.comparePassword = function (password) {
 
 const User = mongoose.model('user', userSchema);
 
-export { User }
+export { User } // to be used in middleware/passport

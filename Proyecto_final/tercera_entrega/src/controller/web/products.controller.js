@@ -1,4 +1,4 @@
-import { productsDao } from './db.controller.js';
+import { productsDao } from '../db.controller.js';
 
 
 async function getProduct(req, res) {

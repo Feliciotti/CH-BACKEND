@@ -1,16 +1,15 @@
-import { isAuth } from '../../middleware/index.js'
-import passport from 'passport';
+import { auth } from '../../middleware/index.js'
 import { Router } from 'express';
 
 const home = Router();
 
 home.route('/')
-    .get((req, res) => {
-        res.redirect('/login')
+    .get(auth, (req, res) => {
+        res.redirect('/home')
     });
 
 home.route('/home')
-    .get(isAuth, (req, res) => {
+    .get(auth, (req, res) => {
         res.render('home')
     });
 

@@ -4,7 +4,7 @@ export {
     deleteCart,
     getCartProducts,
     postCartProducts
-} from './cart.controller.js';
+} from './web/cart.controller.js';
 
 export {
     getProduct,
@@ -12,18 +12,15 @@ export {
     putProduct,
     delProduct,
     productById
-} from './products.controller.js';
+} from './web/products.controller.js';
 
-export {
-    logIn,
-    logInPost,
-    logInError
-} from './logIn.controller.js'
+// export {
+//     logIn,
+//     logInPost,
+//     logInError
+// } from './logs/logIn.controller.js'
 
-export {
-    logOut
-} from './logOut.controller.js'
-
-export {
-    logUp
-} from './logUp.controller.js'
+// export {
+//     logupGet,
+//     logupPost
+// } from './logs/logUp.controller.js'

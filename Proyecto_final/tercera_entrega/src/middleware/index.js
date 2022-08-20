@@ -1,2 +1,2 @@
-export { isAuth } from './auth.js'
+export { auth } from './auth.js'
 export { isAdmin } from './admin.js'

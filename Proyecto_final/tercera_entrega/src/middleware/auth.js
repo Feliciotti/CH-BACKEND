@@ -1,6 +1,4 @@
-import passport from 'passport';
-
-const isAuth = (req, res, next) => {
+const auth = (req, res, next) => {
     if(req.isAuthenticated()){
         next
     } else{
@@ -8,4 +6,4 @@ const isAuth = (req, res, next) => {
     }
 };
 
-export { isAuth };
+export { auth };
