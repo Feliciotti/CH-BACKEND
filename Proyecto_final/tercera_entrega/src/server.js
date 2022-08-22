@@ -11,11 +11,10 @@ import cookieParser from 'cookie-parser';
 
 
 import {
+    log,
     home,
     productsRouter,
-    cartRouter,
-    signin,
-    signup
+    cartRouter
 } from './routes/index.js';
 import './middleware/passport/local.js'
 import './db/db.container/mongoose.js'
@@ -67,11 +66,10 @@ app.use(express.static('./public'))
 
 //------------------- Routes -------------------
 app.use(
+    log,
     home,
     cartRouter,
-    productsRouter,
-    signin,
-    signup
+    productsRouter
 )
 
 

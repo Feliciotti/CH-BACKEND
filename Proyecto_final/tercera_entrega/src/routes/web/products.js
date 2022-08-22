@@ -9,12 +9,13 @@ import {
     delProduct,
     productById
 } from '../../controller/index.js';
+import { isAuthenticated } from '../../middleware/index.js';
 //-------------------------------------------------
 
 const productsRouter = Router();
 
 productsRouter.route('/productos')
-    .get( getProduct )
+    .get(isAuthenticated, getProduct )
 
 productsRouter.route('/productos', isAdmin)
     .post( postProduct )
@@ -24,6 +25,6 @@ productsRouter.route('/productos/:id', isAdmin)
     .delete( delProduct )
 
 productsRouter.route('/productos/:id?')
-    .get( productById )
+    .get(isAuthenticated, productById )
 
 export { productsRouter };

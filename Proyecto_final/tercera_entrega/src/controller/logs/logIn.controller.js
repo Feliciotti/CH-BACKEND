@@ -9,15 +9,14 @@ async function loginError(req, res) {
     await res.render('logInErr');
 }
 
-// async function loginPost(req, res) {
-//     await passport.authenticate('local-login',
-//         {
-//             successRedirect: '/home',
-//             failureRedirect: '/login-error'
-//         }
-//     );
-// }
 
+function logout(req, res, next) {
+
+    req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+};
 
 const loginPost =
     await passport.authenticate('local-login',
@@ -27,8 +26,10 @@ const loginPost =
         }
     );
 
+
 export {
     login,
     loginPost,
-    loginError
+    loginError,
+    logout
 }
