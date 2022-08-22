@@ -14,13 +14,13 @@ export {
     productById
 } from './web/products.controller.js';
 
-// export {
-//     logIn,
-//     logInPost,
-//     logInError
-// } from './logs/logIn.controller.js'
+export {
+    login,
+    loginPost,
+    loginError
+} from './logs/logIn.controller.js'
 
-// export {
-//     logupGet,
-//     logupPost
-// } from './logs/logUp.controller.js'
+export {
+    logup,
+    logupForm
+} from './logs/logUp.controller.js'

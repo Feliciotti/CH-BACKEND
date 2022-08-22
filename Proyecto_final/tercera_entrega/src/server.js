@@ -14,8 +14,8 @@ import {
     home,
     productsRouter,
     cartRouter,
-    logs,
-    logUp
+    signin,
+    signup
 } from './routes/index.js';
 import './middleware/passport/local.js'
 import './db/db.container/mongoose.js'
@@ -70,8 +70,8 @@ app.use(
     home,
     cartRouter,
     productsRouter,
-    logs,
-    logUp
+    signin,
+    signup
 )
 
 

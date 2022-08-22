@@ -1,10 +1,10 @@
-import '../../middleware/passport.js'
+import { User } from '../../models/User.model.js'
 
-async function singupForm (req, res){
-    await res.render('singup')
+async function logupForm (req, res){
+    await res.render('logup')
 }
 
-async function singup(req, res){
+async function logup(req, res){
     const {name, email, password, age, address, phoneNumber} = req.body
     const emailUser =  await User.findOne({email: email})
 
@@ -18,4 +18,9 @@ async function singup(req, res){
 
         res.redirect('login')
     }
+}
+
+export {
+    logupForm,
+    logup
 }

@@ -3,5 +3,5 @@ export { productsRouter } from './web/products.js';
 
 export { home } from './web/home.js'
 
-export { logs } from './logs/logIn.js';
-export { logUp } from './logs/logup.js';
+export { signin } from './logs/signin.js';
+export { signup } from './logs/signup.js';

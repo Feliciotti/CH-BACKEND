@@ -1,14 +1,14 @@
 import passport from 'passport';
 
-async function logIn(req, res) {
+async function login(req, res) {
     await res.render('login')
 }
 
-async function logInError(req, res) {
+async function loginError(req, res) {
     await res.render('logInErr');
 }
 
-async function logInPost(req, res) {
+async function loginPost(req, res) {
     passport.authenticate('login',
         {
             successRedirect: '/home',
@@ -18,7 +18,7 @@ async function logInPost(req, res) {
 }
 
 export {
-    logIn,
-    logInPost,
-    logInError
+    login,
+    loginPost,
+    loginError
 }
