@@ -4,6 +4,15 @@ import { User } from '../../models/User.model.js';
 
 const LocalStrategy = Strategy;
 
+passport.serializeUser((user, done) => {
+    done(null, user.id)
+});
+
+passport.deserializeUser( async (id, done) => {
+    const user = await User.findById(id);
+    done(null, user)
+});
+
 // passport.use('local-logup', new LocalStrategy({
 //         usernameField: 'email',
 //         passwordField: 'password',
@@ -41,11 +50,3 @@ passport.use('local-login', new LocalStrategy({
     })
 );
 
-passport.serializeUser((user, done) => {
-    done(null, user.id)
-});
-
-passport.deserializeUser( async (id, done) => {
-    const user = await User.findById(id);
-    done(null, user)
-});

@@ -3,6 +3,7 @@ import {
     loginPost,
     loginError
 } from '../../controller/index.js'
+import passport from 'passport';
 import { Router } from 'express';
 
 
@@ -12,7 +13,7 @@ const signin = Router();
 
 signin.route('/login')
     .get( login )
-    .post( loginPost )
+    .post( loginPost );
 
 signin.route('/login-error')
     .get( loginError )
