@@ -41,6 +41,14 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+function isAuth (req, res, next) {
+    if(req.isAuthenticated()){
+        next
+    } else{
+        res.redirect('login')
+    }
+};
+
 // Motor de plantilla
 app.set('views', path.join(path.dirname(''), 'views'));
 app.set('view engine', '.hbs');
@@ -51,9 +59,11 @@ app.engine('.hbs', exphbs.engine({
 }));
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
 app.use(express.static('./public'))
+
 
 //------------------- Routes -------------------
 app.use(

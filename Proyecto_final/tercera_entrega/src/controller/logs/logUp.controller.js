@@ -1,16 +1,21 @@
-// import passport from 'passport';
+import '../../middleware/passport.js'
 
-// async function logupGet(req, res) {
-//     await res.render('logUp')
-// }
+async function singupForm (req, res){
+    await res.render('singup')
+}
 
-// async function logupPost(req, res) {
-//     await passport.authenticate('local-logUp',
-//         {
-//             successRedirect: '/login',
-//             failureRedirect: '/logup-error'
-//         }
-//     );
-// }
+async function singup(req, res){
+    const {name, email, password, age, address, phoneNumber} = req.body
+    const emailUser =  await User.findOne({email: email})
 
-// export { logupGet, logupPost }
+    if(emailUser){
+        res.render('logupErr')
+    } else {
+        const newUser = new User({name, email, password, age, address, phoneNumber})
+        newUser.password = await newUser.encryptPassword(password)
+
+        await newUser.save()
+
+        res.redirect('login')
+    }
+}
