@@ -1,7 +1,7 @@
 <div>
     <h1>Registro</h1>
     <br>
-    <form action="/logup" method="post" role="form" autocomplete="off">
+    <form action="/logup" method="post" enctype="multipart/form-data" autocomplete="off">
         <div>
             <label for="name">Nombre</label>
             <input type="text" id="name" name="name" required>
@@ -17,10 +17,10 @@
             <input type="password" id="password" name="password" required>
         </div>
 
-        {{!-- <div>
+        <div>
             <label for="img">Avatar</label>
             <input type="file" id="img" name="img" required>
-        </div> --}}
+        </div>
 
         <div>
             <label for="age">Edad</label>

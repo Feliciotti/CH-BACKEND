@@ -3,6 +3,7 @@ import 'dotenv/config';
 import path from 'path'
 import express from 'express';
 import passport from 'passport';
+import multer from 'multer';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 import exphbs from 'express-handlebars';
@@ -18,6 +19,7 @@ import {
 } from './routes/index.js';
 import './middleware/passport/local.js'
 import './db/db.container/mongoose.js'
+import storage from './libs/multer.js'
 
 //------------------- server settings -------------------
 //initialization
@@ -40,14 +42,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-function isAuth (req, res, next) {
-    if(req.isAuthenticated()){
-        next
-    } else{
-        res.redirect('login')
-    }
-};
-
 // Motor de plantilla
 app.set('views', path.join(path.dirname(''), 'views'));
 app.set('view engine', '.hbs');
@@ -58,10 +52,12 @@ app.engine('.hbs', exphbs.engine({
 }));
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
-app.use(express.static('./public'))
+//Folder for store public files
+app.use('/static', express.static(path.resolve('public')));
+
+//------------------- multer middleware -------------------
 
 
 //------------------- Routes -------------------
