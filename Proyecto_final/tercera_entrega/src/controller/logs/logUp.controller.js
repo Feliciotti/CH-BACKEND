@@ -1,5 +1,4 @@
-import path from 'path';
-import { User } from '../../models/User.model.js'
+import { User } from '../../models/User.model.js';
 
 async function logupForm (req, res){
     await res.render('logup')
@@ -8,7 +7,7 @@ async function logupForm (req, res){
 async function logup(req, res){
     const {name, email, password, age, address, phoneNumber} = req.body
     const emailUser =  await User.findOne({email: email})
-    console.log(req.file);
+
 
     if(emailUser){
         res.render('logupErr')
@@ -17,7 +16,7 @@ async function logup(req, res){
             name,
             email,
             password,
-            // img: req.file,
+            img,
             age,
             address,
             phoneNumber

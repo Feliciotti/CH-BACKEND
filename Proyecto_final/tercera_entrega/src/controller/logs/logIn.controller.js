@@ -1,7 +1,6 @@
 import passport from 'passport';
 import '../../middleware/passport/local.js'
 
-
 async function login(req, res) {
     await res.render('login')
 }

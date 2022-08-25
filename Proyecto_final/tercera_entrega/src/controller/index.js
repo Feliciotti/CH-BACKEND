@@ -19,9 +19,9 @@ export {
     loginPost,
     loginError,
     logout
-} from './logs/logIn.controller.js'
+} from './logs/login.controller.js'
 
 export {
     logup,
     logupForm
-} from './logs/logUp.controller.js'
+} from './logs/logup.controller.js'

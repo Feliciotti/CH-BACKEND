@@ -3,7 +3,6 @@ import 'dotenv/config';
 import path from 'path'
 import express from 'express';
 import passport from 'passport';
-import multer from 'multer';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 import exphbs from 'express-handlebars';
@@ -19,7 +18,6 @@ import {
 } from './routes/index.js';
 import './middleware/passport/local.js'
 import './db/db.container/mongoose.js'
-import storage from './libs/multer.js'
 
 //------------------- server settings -------------------
 //initialization
@@ -52,12 +50,11 @@ app.engine('.hbs', exphbs.engine({
 }));
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
-//Folder for store public files
-app.use('/static', express.static(path.resolve('public')));
-
-//------------------- multer middleware -------------------
+//folder to store public files (avatars)
+app.use('/public', express.static(path.resolve('public')));
 
 
 //------------------- Routes -------------------
