@@ -1,7 +1,9 @@
+//Dependencies
 import { Router } from 'express';
-// -------- MIDDLEWARE --------
+// Middleware
 import { isAdmin } from '../../middleware/admin.js';
-//-------
+import { isAuthenticated } from '../../middleware/index.js';
+//js files
 import {
     getProduct,
     postProduct,
@@ -9,7 +11,7 @@ import {
     delProduct,
     getById
 } from '../../controller/index.js';
-import { isAuthenticated } from '../../middleware/index.js';
+
 //-------------------------------------------------
 
 const productsRouter = Router();
@@ -18,7 +20,7 @@ productsRouter.route('/productos')
     .get(isAuthenticated, getProduct )
 
 productsRouter.route('/productos', isAdmin)
-    .post( postProduct )
+    .post(isAdmin, postProduct )
 
 productsRouter.route('/productos/:id', isAdmin)
     .put( putProduct )

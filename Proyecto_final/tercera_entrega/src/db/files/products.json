@@ -3,7 +3,7 @@
     "title": "Taza Murcielagos",
     "price": 900,
     "thumbnail": "https://scontent.faep34-1.fna.fbcdn.net/v/t39.30808-6/243222240_402948601290101_6189377672004109701_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeEYP0Di4Rlk7XCNggL2krxb3ziG0l-w5azfOIbSX7DlrATpFhA8yTiQr1LPWAp9T73NevWo-ccHYmHdjHHZgJGn&_nc_ohc=3qtmoNF3a9kAX-Ll0ZZ&_nc_oc=AQnOplpwJaBkxvX8HQrLTd3YYcGoMxdjOLUtFi9wDBhmCoBG2bSP3VL36UWecCVLPCbzLbCAFAxkHf7zz9xM6WHl&tn=P3PI5DuoX9Uk9jSW&_nc_ht=scontent.faep34-1.fna&oh=00_AT8mURZHEJibPIADgLzihCR3iIAq2ddlUdXo-_ZLgzA8rg&oe=62CB4EBF",
-    "desc": "Taza de Seagot Ceramics",
+    "desc": "Cornidez Studios",
     "stock": 30,
     "id": 1
   },
@@ -38,5 +38,13 @@
     "desc": "Taza de Alive Ceramics",
     "stock": 60,
     "id": 5
+  },
+  {
+    "title": "Test",
+    "price": 1200,
+    "thumbnail": "https://i.pinimg.com/736x/8c/ac/d3/8cacd3b5268202776459920083517162.jpg",
+    "desc": "Taza de Alive Ceramics",
+    "stock": 40,
+    "id": 6
   }
 ]

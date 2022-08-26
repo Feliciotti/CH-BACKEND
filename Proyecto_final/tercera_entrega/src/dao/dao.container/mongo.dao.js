@@ -1,9 +1,13 @@
 import { ObjectId } from 'mongodb'
 import { database } from '../../db/mongoDB.js'
 
+// class MongoContainer {
+//     constructor(collectionDB){
+//         this.collection = database.collection(collectionDB)
+//     }
 class MongoContainer {
-    constructor(collectionDB){
-        this.collection = database.collection(collectionDB)
+    constructor(){
+        this.collection = new MongoClientDB()
     }
 
     async getAll() {
