@@ -1,13 +1,14 @@
 import { ObjectId } from 'mongodb'
-import { MongoClientDB } from '../../db/db.container/mongoDB.js'
+import { database } from '../../db/db.container/mongoDB.js'
 
 class MongoContainer {
-    constructor(){
-        this.collection = new MongoClientDB()
+    constructor(collectionDB){
+        this.collection = database.collection(collectionDB)
     }
 
     async getAll() {
         try {
+            // console.log(this.collection);
             const array = await this.collection.find().toArray()
             return array
         } catch (error) {
@@ -57,6 +58,6 @@ class MongoContainer {
             throw new Error(error)
         }
     }
-}
+};
 
 export { MongoContainer }
