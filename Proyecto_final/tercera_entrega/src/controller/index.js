@@ -25,3 +25,8 @@ export {
     logup,
     logupForm
 } from './logs/logup.controller.js'
+
+export {
+    getUser,
+    getProfile
+} from './web/user.controller.js'

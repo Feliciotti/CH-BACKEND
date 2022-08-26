@@ -8,11 +8,10 @@ class MongoContainer {
 
     async getAll() {
         try {
-            // console.log(this.collection);
             const array = await this.collection.find().toArray()
             return array
         } catch (error) {
-            
+
             throw new Error(error)        
         }
     }

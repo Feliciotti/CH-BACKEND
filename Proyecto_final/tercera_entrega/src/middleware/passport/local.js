@@ -13,26 +13,6 @@ passport.deserializeUser( async (id, done) => {
     done(null, user)
 });
 
-// passport.use('local-logup', new LocalStrategy({
-//         usernameField: 'email',
-//         passwordField: 'password',
-//         passReqToCallback: true
-//     }, async (req, done) =>{
-//         const {name, email, password, age, address, phoneNumber} = req.body
-//         const user = await User.findOne({email: 'email'})
-
-//         if(user){
-//             return done(null, false);
-//         }else {
-//             const newUser = new User({name, email, password, age, address, phoneNumber})
-//             newUser.password = await newUser.encryptPassword(password)
-
-//             await newUser.save()
-//             done(null, newUser)
-//         }
-//     })
-// );
-
 passport.use('local-login', new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password',

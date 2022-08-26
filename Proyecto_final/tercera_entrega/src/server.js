@@ -13,6 +13,7 @@ import cookieParser from 'cookie-parser';
 import {
     log,
     home,
+    profile,
     productsRouter,
     cartRouter
 } from './routes/index.js';
@@ -62,7 +63,8 @@ app.use(
     log,
     home,
     cartRouter,
-    productsRouter
+    productsRouter,
+    profile
 )
 
 

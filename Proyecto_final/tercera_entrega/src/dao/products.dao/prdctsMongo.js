@@ -3,7 +3,6 @@ import { MongoContainer } from '../index.js';
 // ------- SINGLETON -------
 let instance = null
 // -------------------------
-
 class ProductsMongo extends MongoContainer {
     constructor(){
         super('products')
