@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb'
-import { database } from '../../db/db.container/mongoDB.js'
+import { database } from '../../db/mongoDB.js'
 
 class MongoContainer {
     constructor(collectionDB){

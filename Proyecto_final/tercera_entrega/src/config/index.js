@@ -5,12 +5,8 @@ const mongo = {
     }
 };
 
-const firebase = {
-    url: 'https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-pb2mu%40ecommerce-backend-76179.iam.gserviceaccount.com'
-};
-
 const files = {
     route: 'db/files',
 };
   
-export { mongo, files, firebase};
+export { mongo, files };

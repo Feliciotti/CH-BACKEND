@@ -1,5 +1,5 @@
 import { MongoClient } from 'mongodb';
-import { mongo } from '../../config/index.js'
+import { mongo } from '../config/index.js'
 
 const client = new MongoClient(mongo.db.uri)
 await client.connect()

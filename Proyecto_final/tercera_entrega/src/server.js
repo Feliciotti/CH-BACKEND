@@ -18,7 +18,7 @@ import {
     cartRouter
 } from './routes/index.js';
 import './middleware/passport/local.js'
-import './db/db.container/mongoose.js'
+import './db/mongoose.js'
 
 //------------------- server settings -------------------
 //initialization
