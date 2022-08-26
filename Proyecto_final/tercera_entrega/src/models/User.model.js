@@ -17,9 +17,9 @@ const userSchema = new Schema({
 //     return bcryptjs.hashSync(password, bcryptjs.genSaltSync(10));
 //   };
 
-// userSchema.methods.comparePassword = function (password) {
-//     return bcryptjs.compareSync(password, this.password);
-// };
+userSchema.methods.comparePassword = function (password) {
+    return bcryptjs.compareSync(password, this.password);
+};
 
 const User = mongoose.model('user', userSchema);
 

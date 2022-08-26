@@ -11,7 +11,7 @@ export {
     postProduct,
     putProduct,
     delProduct,
-    productById
+    getById
 } from './web/products.controller.js';
 
 export {

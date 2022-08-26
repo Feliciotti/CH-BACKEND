@@ -1,6 +1,7 @@
 import { productsDao } from '../db.controller.js';
 
 
+// -------- FUNCTIONS --------
 async function getProduct(req, res) {
     const products = await productsDao.getAll()
     res.status(200).send(products)
@@ -34,7 +35,8 @@ async function delProduct(req, res){
     res.send(deleted)
 }
 
-async function productById(req, res){
+async function getById(req, res){
+    
     const {id} = req.params
 
     let idMax = await productsDao.getAll()
@@ -53,5 +55,5 @@ export {
     postProduct,
     putProduct,
     delProduct,
-    productById
+    getById
 }

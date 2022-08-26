@@ -7,7 +7,7 @@ import {
     postProduct,
     putProduct,
     delProduct,
-    productById
+    getById
 } from '../../controller/index.js';
 import { isAuthenticated } from '../../middleware/index.js';
 //-------------------------------------------------
@@ -25,6 +25,6 @@ productsRouter.route('/productos/:id', isAdmin)
     .delete( delProduct )
 
 productsRouter.route('/productos/:id?')
-    .get(isAuthenticated, productById )
+    .get(isAuthenticated, getById)
 
 export { productsRouter };

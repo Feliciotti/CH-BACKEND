@@ -10,7 +10,7 @@ const firebase = {
 };
 
 const files = {
-    route: 'src/db/files',
+    route: 'db/files',
 };
   
 export { mongo, files, firebase};
