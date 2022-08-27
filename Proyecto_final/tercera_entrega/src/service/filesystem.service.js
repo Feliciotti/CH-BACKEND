@@ -1,7 +1,8 @@
 import { FScontainerDao } from '../model/index.js';
 
-class FSservice {
+class FSservice extends FScontainerDao{
     constructor(){
+        super()
         this.fsDao = new FScontainerDao
     }
     

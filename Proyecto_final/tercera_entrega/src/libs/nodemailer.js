@@ -13,13 +13,6 @@ const transporter = createTransport({
     }
 });
 
-const mailOptions = {
-    from: 'ecommerce',
-    to: TEST_MAIL,
-    subjet: 'New user'
-}
-
 export {
-    transporter,
-    mailOptions
+    transporter
 }

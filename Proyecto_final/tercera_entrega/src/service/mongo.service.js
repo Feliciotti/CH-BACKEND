@@ -2,6 +2,7 @@ import { MongoContainer } from '../model/index.js'
 
 class MongoService extends MongoContainer{
     constructor(){
+        super()
         this.mngoDao = new MongoContainer()
     }
 

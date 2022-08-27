@@ -1,5 +1,5 @@
 import { User } from '../../model/User.model.js';
-import { transporter, mailOptions } from "../../libs/index.js";
+import { transporter } from "../../libs/index.js";
 
 // -------------------------------
 async function logupForm (req, res){
@@ -28,15 +28,24 @@ async function logup(req, res){
         // newUser.password = await newUser.encryptPassword(password)
 
         await newUser.save()
-
-        const newInfo = []
-
-        newInfo.push
-
-        if(newUser){
             try {
-                const info = await transporter.sendMail(mailOptions);
-                console.log(info);
+                transporter.sendMail({
+                    from: "'ecommerce', <melyna2@ethereal.email>",
+                    to: 'melyna2@ethereal.email',
+                    subject: 'New user registered',
+                    html: `
+                        <h1>New user information</h1>
+                        <ul>
+                            <li>Name: ${name}</li>
+                            <li>e-mail: ${email}</li>
+                            <li>Phone number: ${phoneNumber}</li>
+                            <li>Address: ${address}</li>
+                            <li>Age: ${age}</li>
+                            <li>Registed at: ${Date().toLocaleString()}</li>
+                        </ul>
+                    `
+                });
+                console.log('sended');
             
             }catch(error){
                 console.log(error);
@@ -44,8 +53,8 @@ async function logup(req, res){
         }
 
         res.redirect('login')
-    }
 }
+
 // -------------------------------
 
 export {

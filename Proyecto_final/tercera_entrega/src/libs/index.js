@@ -1,1 +1,1 @@
-export { transporter, mailOptions } from './nodemailer.js'
+export { transporter } from './nodemailer.js'
