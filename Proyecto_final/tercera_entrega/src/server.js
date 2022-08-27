@@ -1,4 +1,4 @@
-//------------------- DEPENDENCIAS -------------------
+//------------------- dependencies -------------------
 import 'dotenv/config';
 import path from 'path'
 import express from 'express';
@@ -9,7 +9,7 @@ import exphbs from 'express-handlebars';
 import MongoStore from 'connect-mongo';
 import cookieParser from 'cookie-parser';
 
-
+// js files
 import {
     log,
     home,
@@ -41,7 +41,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Motor de plantilla
+// template
 app.set('views', path.join(path.dirname(''), 'views'));
 app.set('view engine', '.hbs');
 app.engine('.hbs', exphbs.engine({
@@ -65,11 +65,10 @@ app.use(
     cartRouter,
     productsRouter,
     profile
-)
+);
 
 
 // ------------------- PORT -------------------
-
 const PORT = process.env.PORT || 4000
 
 const server = app.listen(PORT, () => {

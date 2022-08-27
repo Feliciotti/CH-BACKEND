@@ -1,0 +1,1 @@
+export { transporter, mailOptions } from './nodemailer.js'

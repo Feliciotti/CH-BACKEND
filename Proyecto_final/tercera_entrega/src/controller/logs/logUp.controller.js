@@ -1,5 +1,7 @@
-import { User } from '../../models/User.model.js';
+import { User } from '../../model/User.model.js';
+import { transporter, mailOptions } from "../../libs/index.js";
 
+// -------------------------------
 async function logupForm (req, res){
     await res.render('logup')
 }
@@ -27,11 +29,26 @@ async function logup(req, res){
 
         await newUser.save()
 
+        const newInfo = []
+
+        newInfo.push
+
+        if(newUser){
+            try {
+                const info = await transporter.sendMail(mailOptions);
+                console.log(info);
+            
+            }catch(error){
+                console.log(error);
+            }
+        }
+
         res.redirect('login')
     }
 }
+// -------------------------------
 
 export {
     logupForm,
     logup
-}
+}; // to index

@@ -1,5 +1,6 @@
-import { User } from "../../models/User.model.js";
+import { User } from "../../model/User.model.js";
 
+// -------------------------------
 async function getUser(req, res){
     const user = await User.find({user: req.user.id})
     res.render('home', { user })
@@ -10,7 +11,9 @@ async function getProfile(req, res) {
     res.render('profile', { user })
 }
 
+// -------------------------------
+
 export {
     getUser,
     getProfile
-}
+} //to index

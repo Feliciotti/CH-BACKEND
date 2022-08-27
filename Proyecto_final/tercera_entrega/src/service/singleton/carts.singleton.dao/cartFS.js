@@ -1,10 +1,10 @@
-import { FScontainer } from '../index.js';
+import { FSservice } from '../../index.js';
 
 // ------- SINGLETON -------
 let instance = null
 // -------------------------
 
-class CartFS extends FScontainer {
+class CartFS extends FSservice {
     constructor(){
         super('carts')
     }

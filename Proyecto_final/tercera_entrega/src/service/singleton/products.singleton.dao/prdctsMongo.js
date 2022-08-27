@@ -1,9 +1,9 @@
-import { MongoContainer } from '../index.js';
+import { MongoService } from '../../index.js';
 
 // ------- SINGLETON -------
 let instance = null
 // -------------------------
-class ProductsMongo extends MongoContainer {
+class ProductsMongo extends MongoService {
     constructor(){
         super('products')
     }

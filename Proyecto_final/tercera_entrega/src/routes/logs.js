@@ -1,3 +1,5 @@
+import { Router } from "express";
+
 import {
     login,
     loginPost,
@@ -6,7 +8,6 @@ import {
     logupForm,
     logout
 } from '../controller/index.js'
-import { Router } from "express";
 import multer from '../libs/multer.js';
 
 //---------------------------------------
@@ -26,5 +27,7 @@ log.route('/logup')
 
 log.route('/logout')
     .get( logout )
+
+//---------------------------------------
 
 export { log }

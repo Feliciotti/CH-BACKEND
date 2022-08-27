@@ -1,9 +1,9 @@
 import { productsDao, cartsDao } from '../db.controller.js';
 
-// -------- FUNCTIONS --------
+// -------------------------------
 async function getCart(req, res) {
     try {
-        const carts = await cartsDao.getAll()
+        const carts = await cartsDao.getArray()
         res.status(200).json(carts)
     } catch (error) {
         res.json(error)
@@ -12,7 +12,7 @@ async function getCart(req, res) {
 async function postCart(req, res) {
     try {
         const { title } = req.body
-        const cart = await cartsDao.save({title, products: []})
+        const cart = await cartsDao.add({title, products: []})
 
         res.status(200).json(cart)
     } catch (error) {
@@ -58,11 +58,11 @@ async function postCartProducts(req, res) {
     }
 }
 
-
+// -------------------------------
 export { 
     getCart,
     postCart,
     deleteCart,
     getCartProducts,
     postCartProducts
-};
+}; // to index

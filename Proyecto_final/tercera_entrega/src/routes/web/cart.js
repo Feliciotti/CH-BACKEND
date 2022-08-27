@@ -1,3 +1,5 @@
+import { Router } from 'express';
+
 import {
     getCart,
     postCart,
@@ -5,7 +7,6 @@ import {
     getCartProducts,
     postCartProducts
 } from '../../controller/index.js';
-import { Router } from 'express';
 import { isAuthenticated } from '../../middleware/index.js';
 
 //---------------------------------------
@@ -14,13 +15,13 @@ const cartRouter = Router();
 
 cartRouter.route('/carrito')
     .get (isAuthenticated, getCart )
-    .post( postCart );
+    .post(isAuthenticated, postCart );
 
 cartRouter.route('/carrito/:id')
-    .delete( deleteCart );
+    .delete(isAuthenticated, deleteCart );
     
 cartRouter.route('/carrito/:id/productos')
     .get(isAuthenticated, getCartProducts )
-    .post( postCartProducts);
+    .post(isAuthenticated, postCartProducts);
 
 export { cartRouter };

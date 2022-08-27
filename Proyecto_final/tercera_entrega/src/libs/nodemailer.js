@@ -1,7 +1,8 @@
 import { createTransport } from "nodemailer";
+import 'dotenv/config';
 
-const TEST_MAIL = process.env.NODEMAILER
-const TEST_PASS = process.env.NODEMAILER_PASS
+const TEST_MAIL = 'melyna2@ethereal.email'
+const TEST_PASS = 'A1Dk2343dzAXGU6WbD'
 
 const transporter = createTransport({
     host: 'smtp.ethereal.email',
@@ -13,16 +14,12 @@ const transporter = createTransport({
 });
 
 const mailOptions = {
-    from: 'Node server',
+    from: 'ecommerce',
     to: TEST_MAIL,
-    subjet: 'testing',
-    html: '<h1>HOLA</h1>'
+    subjet: 'New user'
 }
 
-try {
-    const info = await transporter.sendMail(mailOptions);
-    console.log(info);
-
-}catch(error){
-    console.log(error);
+export {
+    transporter,
+    mailOptions
 }

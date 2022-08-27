@@ -1,5 +1,4 @@
 import { ObjectId } from 'mongodb'
-import { database } from '../../db/mongoDB.js'
 
 // class MongoContainer {
 //     constructor(collectionDB){
@@ -12,8 +11,8 @@ class MongoContainer {
 
     async getAll() {
         try {
-            const array = await this.collection.find().toArray()
-            return array
+            await this.collection.find()
+
         } catch (error) {
 
             throw new Error(error)        
@@ -24,8 +23,6 @@ class MongoContainer {
         try {
             await this.collection.insertOne(e)
 
-            return `${e.title}, bajo id: ${e._id}`
-
         } catch (error) {
             throw new Error(error)
         }
@@ -33,8 +30,7 @@ class MongoContainer {
 
     async getById(id){
         try {
-            const resultado = await this.collection.findOne({_id: ObjectId(id)})
-            return resultado
+            await this.collection.findOne({_id: ObjectId(id)})
 
         } catch (error) {
             return error
@@ -43,8 +39,7 @@ class MongoContainer {
 
     async updateById(id, newData){
         try {
-            const updated = this.collection.findOneAndUpdate({_id:ObjectId(id)}, {$set: newData})
-            return updated
+            this.collection.findOneAndUpdate({_id:ObjectId(id)}, {$set: newData})
 
         } catch (error) {
             throw new Error(error)
@@ -54,8 +49,7 @@ class MongoContainer {
     async deleteById(id){
         try {
 
-            const deleted = await this.collection.deleteOne({_id: ObjectId(id)})
-            return deleted
+            await this.collection.deleteOne({_id: ObjectId(id)})
             
         } catch (error) {
             throw new Error(error)

@@ -1,4 +1,4 @@
-import { CartFS, CartMongo } from '../dao/index.js';
+import { CartFS, CartMongo } from '../service/singleton/index.js';
 
 class CartsFactory {
     static create(db){

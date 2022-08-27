@@ -23,8 +23,8 @@ productsRouter.route('/productos', isAdmin)
     .post(isAdmin, postProduct )
 
 productsRouter.route('/productos/:id', isAdmin)
-    .put( putProduct )
-    .delete( delProduct )
+    .put(isAdmin, putProduct )
+    .delete(isAdmin, delProduct )
 
 productsRouter.route('/productos/:id?')
     .get(isAuthenticated, getById)

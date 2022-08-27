@@ -7,5 +7,5 @@ const DB = process.env.SELECTED_DB || 'mongo'
 const productsDao = ProductsFactory.create(DB)
 const cartsDao = CartsFactory.create(DB)
 
-//---- TO CONTROLLERS ----
-export { productsDao, cartsDao}
+// -------------------------------
+export { productsDao, cartsDao} // to /web controller

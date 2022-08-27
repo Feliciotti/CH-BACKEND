@@ -1,4 +1,4 @@
-import { ProductsFS, ProductsMongo } from '../dao/index.js';
+import { ProductsFS, ProductsMongo } from '../service/singleton/index.js';
 
 class ProductsFactory {
     static create(db){

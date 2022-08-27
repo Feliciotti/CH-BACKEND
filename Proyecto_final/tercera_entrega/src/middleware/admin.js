@@ -1,4 +1,4 @@
-import { User } from "../models/User.model.js"
+import { User } from "../model/User.model.js"
 
 const isAdmin = async (req, res, next) => {
 
