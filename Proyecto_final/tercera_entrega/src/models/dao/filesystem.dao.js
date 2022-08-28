@@ -1,10 +1,9 @@
 import fs from 'fs';
-import { files } from '../../config/index.js';
+import { FilesystemDB } from '../../db/index.js';
 
-class FScontainerDao{
-    constructor(fileName) {
-        console.log(`${files.route}/${fileName}.json`);
-        this.fileName = `${files.route}/${fileName}.json`;
+class FScontainerDao extends FilesystemDB {
+    constructor(e) {
+        super(e)
     };
     
     async getAll() {

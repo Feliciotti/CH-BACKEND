@@ -1,4 +1,4 @@
-import { FScontainerDao } from '../model/index.js';
+import { FScontainerDao } from '../models/index.js';
 
 class FSservice extends FScontainerDao{
     constructor(e){

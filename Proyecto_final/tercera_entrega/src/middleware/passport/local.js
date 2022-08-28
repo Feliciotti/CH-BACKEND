@@ -1,6 +1,6 @@
 import passport from 'passport';
 import { Strategy } from 'passport-local';
-import { User } from '../../model/User.model.js';
+import { User } from '../../models/index.js';
 
 // -------------------------------
 

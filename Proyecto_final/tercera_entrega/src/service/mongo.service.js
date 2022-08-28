@@ -1,4 +1,4 @@
-import { MongoContainer } from '../model/index.js'
+import { MongoContainer } from '../models/index.js'
 
 class MongoService extends MongoContainer{
     constructor(e){

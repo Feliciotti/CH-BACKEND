@@ -38,13 +38,5 @@
     "desc": "Taza de Alive Ceramics",
     "stock": 60,
     "id": 5
-  },
-  {
-    "title": "Test",
-    "price": 1200,
-    "thumbnail": "https://i.pinimg.com/736x/8c/ac/d3/8cacd3b5268202776459920083517162.jpg",
-    "desc": "Cornidez Testsss Studios",
-    "stock": 40,
-    "id": 6
   }
 ]

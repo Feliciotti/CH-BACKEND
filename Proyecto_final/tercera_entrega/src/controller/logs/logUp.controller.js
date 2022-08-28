@@ -1,4 +1,4 @@
-import { User } from '../../model/User.model.js';
+import { User } from '../../models/index.js';
 import { transporter } from "../../libs/index.js";
 
 // -------------------------------

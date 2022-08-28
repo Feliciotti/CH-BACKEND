@@ -3,7 +3,7 @@ import { productsDao, cartsDao } from '../db.controller.js';
 // -------------------------------
 async function getCart(req, res) {
     try {
-        const carts = await cartsDao.getArray()
+        const carts = await cartsDao.getAll()
         res.status(200).json(carts)
     } catch (error) {
         res.json(error)
@@ -21,8 +21,8 @@ async function postCart(req, res) {
 }
 
 async function deleteCart(req, res) {
-    const id = req.params.id 
-    const deleted = await cartsDao.deleteById(id)
+    const { id } = req.params
+    const deleted = await cartsDao.delete(id)
 
     res.send(deleted)
 }
@@ -50,11 +50,19 @@ async function postCartProducts(req, res) {
         const product = await productsDao.getById(productId)
         cart.products =  [...cart.products, product]
 
-        const result = await cartsDao.updateById(id, cart);
+        const result = await cartsDao.update(id, cart);
         res.status(201).json(result);
 
     } catch (error) {
         res.json(error)
+    }
+}
+
+async function postOrder(req, res){
+    try{
+
+    }catch(error) {
+
     }
 }
 
