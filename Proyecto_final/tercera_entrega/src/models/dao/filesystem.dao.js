@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { FilesystemDB } from '../../db/index.js';
 
-class FScontainerDao extends FilesystemDB {
+class FileDao extends FilesystemDB {
     constructor(e) {
         super(e)
     };
@@ -97,4 +97,4 @@ class FScontainerDao extends FilesystemDB {
     
 };
 
-export { FScontainerDao }
+export { FileDao }

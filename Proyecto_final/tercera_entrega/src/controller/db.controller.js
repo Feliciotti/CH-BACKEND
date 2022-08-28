@@ -8,4 +8,4 @@ const productsDao = ProductsFactory.create(DB)
 const cartsDao = CartsFactory.create(DB)
 
 // -------------------------------
-export { productsDao, cartsDao} // to /web controller
+export { productsDao, cartsDao} // to /web controllers

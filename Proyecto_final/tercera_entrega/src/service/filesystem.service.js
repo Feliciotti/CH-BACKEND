@@ -1,6 +1,6 @@
-import { FScontainerDao } from '../models/index.js';
+import { FileDao } from '../models/index.js';
 
-class FSservice extends FScontainerDao{
+class FSservice extends FileDao{
     constructor(e){
         // console.log(e);
         super(e)

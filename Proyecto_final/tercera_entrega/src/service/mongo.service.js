@@ -1,14 +1,15 @@
-import { MongoContainer } from '../models/index.js'
+import { MongoDao } from '../models/index.js'
 
-class MongoService extends MongoContainer{
+class MongoService extends MongoDao{
     constructor(e){
         super(e)
     }
 
     async getArray() {
         try {
-            const array = await super.getAll().toArray()
+            const array = await super.getAll()
             return array
+            
         } catch (error) {
 
             throw new Error(error)        
