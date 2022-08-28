@@ -1,15 +1,15 @@
-import { CartFS, CartMongo } from '../service/singleton/index.js';
+import { CartsFS, CartsMongo } from '../service/singleton/index.js';
 
 class CartsFactory {
     static create(db){
         switch(db) {
             case 'mongo':
-                return CartMongo.getInstance()
+                return CartsMongo.getInstance()
 
             break;
 
             case 'files':
-                return CartFS.getInstance()
+                return CartsFS.getInstance()
         }
     }
 }

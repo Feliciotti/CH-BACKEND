@@ -28,7 +28,8 @@ class MongoDao extends MongoDB {
 
     async getById(id){
         try {
-            await this.collection.findOne({_id: ObjectId(id)})
+            const e = await this.collection.findOne({_id: ObjectId(id)})
+            return e
 
         } catch (error) {
             return error

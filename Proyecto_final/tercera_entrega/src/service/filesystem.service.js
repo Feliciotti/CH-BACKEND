@@ -2,9 +2,7 @@ import { FileDao } from '../models/index.js';
 
 class FSservice extends FileDao{
     constructor(e){
-        // console.log(e);
         super(e)
-        // this.fsDao = new FScontainerDao(e)
     }
     
     async getAll() {

@@ -1,4 +1,4 @@
-//--------------TO /MODELS/SERVICE --------------
+//--------------TO SERVICE --------------
 export { MongoDao } from './dao/mongo.dao.js';
 export { FileDao } from './dao/filesystem.dao.js';
 

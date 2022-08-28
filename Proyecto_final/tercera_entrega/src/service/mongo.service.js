@@ -29,7 +29,8 @@ class MongoService extends MongoDao{
 
     async getById(id){
         try {
-            await super.getById(id)
+            const e = await super.getById(id)
+            return e
 
         } catch (error) {
             return error
