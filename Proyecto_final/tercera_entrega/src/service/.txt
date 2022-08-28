@@ -1,0 +1,31 @@
+class Dao {
+    constructor( fileName ) {
+        this.fileName = `${files.route}/${fileName}.json`;
+    };
+
+class Servicio extends Dao{
+    constructor(){
+        super()
+        this.fsDao = new FScontainerDao
+}
+
+
+class Collección extends FSservice {
+    constructor(){
+        super('products')
+}
+
+
+class Animal {
+    constructor(pelo, ojos){
+        this.pelo = pelo,
+        this.ojos = ojos
+    }
+}
+
+class Perro extends Animal{
+    constructor(pelo, ojos, apodo){
+        super(pelo, ojos)
+        this.apodo = apodo
+    }
+}

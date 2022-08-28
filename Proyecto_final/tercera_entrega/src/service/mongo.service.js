@@ -1,14 +1,13 @@
 import { MongoContainer } from '../model/index.js'
 
 class MongoService extends MongoContainer{
-    constructor(){
-        super()
-        this.mngoDao = new MongoContainer()
+    constructor(e){
+        super(e)
     }
 
     async getArray() {
         try {
-            const array = await this.mngoDao.getAll().toArray()
+            const array = await super.getAll().toArray()
             return array
         } catch (error) {
 
@@ -18,7 +17,7 @@ class MongoService extends MongoContainer{
 
     async add(e){
         try {
-            await this.mngoDao.save(e)
+            await super.save(e)
 
             return `${e.title}, bajo id: ${e._id}`
 
@@ -27,9 +26,9 @@ class MongoService extends MongoContainer{
         }
     }
 
-    async eId(id){
+    async getById(id){
         try {
-            await this.mngoDao.getById(id)
+            await super.getById(id)
 
         } catch (error) {
             return error
@@ -38,19 +37,19 @@ class MongoService extends MongoContainer{
 
     async update(id, newData){
         try {
-            await this.mngoDao.updateById(id, newData)
+            await super.updateById(id, newData)
 
-            return this.eId(id)
+            return this.getById(id)
 
         } catch (error) {
             throw new Error(error)
         }
     }
 
-    async erase(id){
+    async delete(id){
         try {
 
-            await this.mngoDao.delete(id)
+            await super.deleteById(id)
 
             return ('Deleted')
             

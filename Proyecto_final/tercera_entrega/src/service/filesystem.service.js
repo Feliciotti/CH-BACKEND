@@ -1,25 +1,27 @@
 import { FScontainerDao } from '../model/index.js';
 
 class FSservice extends FScontainerDao{
-    constructor(){
-        super()
-        this.fsDao = new FScontainerDao
+    constructor(e){
+        // console.log(e);
+        super(e)
+        // this.fsDao = new FScontainerDao(e)
     }
     
-    async getArray() {
-        const array = await this.fsDao.getAll()
+    async getAll() {
+        const array = await super.getAll()
+        const parsedArray = JSON.parse(array);
 
-        return array
+        return parsedArray;
     };
 
     async add(e) {
         try {
-            const array = await this.getArray();
+            const array = await this.getAll();
 
             const lastAdded = array[array.length-1]
             e.id = lastAdded ? lastAdded.id + 1 : 1
 
-            await this.fsDao.save(e)
+            await super.save(e)
 
             return `${e.title}, con id: ${e.id}`
 
@@ -28,9 +30,9 @@ class FSservice extends FScontainerDao{
         };
     };
 
-    async eId(id){
+    async getById(id){
         try{
-            const product = await this.fsDao.getById(id);
+            const product = await super.getById(id);
 
             return product
 
@@ -41,16 +43,9 @@ class FSservice extends FScontainerDao{
 
     async delete(id){
         try {
-            const array = await this.getArray();  
-            const index = array.findIndex(product => product.id == id);
+            await super.deleteById(id)
 
-            if (index == -1) {
-                return `No se puede borrar. Item: ${id} no encontrado.`;
-            } else{
-                await this.fsDao.deleteById(id)
-            }
-
-            return('Deleted')
+            return(`Deleted item under id: ${id}`)
             
         } catch (error){
             error
@@ -59,16 +54,9 @@ class FSservice extends FScontainerDao{
 
     async update(id, newData) {
         try {
-            const array = await this.getAll();
-            const index = array.findIndex((e) => e.id == id);
-            
-            if (index == -1) {
-                return `No se encontro el item: ${id}.`;
-            } else {
-               await this.fsDao.updateById(id, newData)
-            }
+            const updated = await super.updateById(id, newData)
 
-            return array[index];
+            return updated;
 
         } catch (error) {
             return error;
@@ -77,7 +65,7 @@ class FSservice extends FScontainerDao{
 
     async deleteAll(){
         try {
-            await this.fsDao.delete()
+            await super.delete()
         } catch (error) {
             throw new Error(error)
         };

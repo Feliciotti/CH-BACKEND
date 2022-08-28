@@ -1,8 +1,9 @@
 import { productsDao } from '../db.controller.js';
 
 // -------------------------------
+
 async function getProduct(req, res) {
-    const products = await productsDao.getArray()
+    const products = await productsDao.getAll()
     res.status(200).send(products)
 }
 
@@ -29,6 +30,12 @@ async function putProduct(req, res){
 async function delProduct(req, res){
     const {id} = req.params
 
+    let idMax = await productsDao.getAll()
+
+    if (id > idMax.length) {
+        res.status(404).send({error: 'el producto no existe'})
+    }
+
     const deleted = await productsDao.delete(id)
 
     res.send(deleted)
@@ -36,15 +43,15 @@ async function delProduct(req, res){
 
 async function getById(req, res){
     
-    const {id} = req.params
+    const { id } = req.params
 
-    let idMax = await productsDao.getArray()
+    let idMax = await productsDao.getAll()
 
     if (id > idMax.length) {
         res.status(404).send({error: 'el producto no existe'})
     }
 
-    let product = await productsDao.eId(id)
+    let product = await productsDao.getById(id)
 
     res.status(200).send(product)
 }
