@@ -1,6 +1,6 @@
 import passport from 'passport';
 import { Strategy } from 'passport-local';
-import { User } from '../../models/index.js';
+import { User } from '../../../models/index.js';
 
 // -------------------------------
 
@@ -20,7 +20,7 @@ passport.use('local-login', new LocalStrategy({
         passwordField: 'password',
         passReqToCallback: true
     }, async (req, email, password, done) =>{
-        const user = await User.findOne({email: email})
+        const user = await User.findOne({email: email}).populate('role')
 
         if(!user){
             return done(null, false);
@@ -31,4 +31,3 @@ passport.use('local-login', new LocalStrategy({
         return done(null, user);
     })
 );
-

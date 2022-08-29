@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { isAuthenticated } from "../../middleware/index.js";
+import { isAuthenticated } from '../middleware/index.js';
 import { getProfile } from "../../controller/index.js";
 
 const profile = Router()

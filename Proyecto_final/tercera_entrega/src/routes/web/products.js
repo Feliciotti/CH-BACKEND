@@ -1,8 +1,7 @@
 //Dependencies
 import { Router } from 'express';
 // Middleware
-import { isAdmin } from '../../middleware/admin.js';
-import { isAuthenticated } from '../../middleware/index.js';
+import { isAdmin, isAuthenticated } from '../middleware/index.js';
 //js files
 import {
     getProduct,

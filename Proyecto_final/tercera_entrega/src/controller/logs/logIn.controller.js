@@ -1,5 +1,5 @@
 import passport from 'passport';
-import '../../middleware/passport/local.js'
+import '../../routes/middleware/index.js'
 
 // -------------------------------
 async function login(req, res) {

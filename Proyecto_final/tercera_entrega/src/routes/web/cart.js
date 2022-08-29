@@ -7,14 +7,14 @@ import {
     getCartProducts,
     postCartProducts
 } from '../../controller/index.js';
-import { isAuthenticated } from '../../middleware/index.js';
+import { isAuthenticated, isAdmin } from '../middleware/index.js'
 
 //---------------------------------------
 
 const cartRouter = Router();
 
 cartRouter.route('/carrito')
-    .get (isAuthenticated, getCart )
+    .get (isAuthenticated, isAdmin , getCart )
     .post(isAuthenticated, postCart );
 
 cartRouter.route('/carrito/:id')

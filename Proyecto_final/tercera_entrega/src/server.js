@@ -17,12 +17,14 @@ import {
     productsRouter,
     cartRouter
 } from './routes/index.js';
-import './middleware/passport/local.js'
+import './routes/middleware/passport/local.js'
 import './db/mongoose.js'
+import { createRoles } from './libs/rolesSetup.js'
 
 //------------------- server settings -------------------
 //initialization
 const app = express();
+createRoles()
 
 //Session settings
 app.use(cookieParser());

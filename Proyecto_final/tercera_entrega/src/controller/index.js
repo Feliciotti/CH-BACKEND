@@ -16,7 +16,7 @@ export {
 
 export {
     login,
-    loginPost,
+    // loginPost,
     loginError,
     logout
 } from './logs/login.controller.js'

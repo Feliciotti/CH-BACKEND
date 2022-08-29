@@ -46,6 +46,7 @@ async function postCartProducts(req, res) {
     try {
         const {id} = req.params
         const {productId} = req.body
+
         const cart = await cartsDao.getById(id)
         const product = await productsDao.getById(productId)
         cart.products =  [...cart.products, product]
@@ -60,7 +61,7 @@ async function postCartProducts(req, res) {
 
 async function postOrder(req, res){
     try{
-
+        
     }catch(error) {
 
     }
