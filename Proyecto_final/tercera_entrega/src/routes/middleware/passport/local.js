@@ -20,7 +20,7 @@ passport.use('local-login', new LocalStrategy({
         passwordField: 'password',
         passReqToCallback: true
     }, async (req, email, password, done) =>{
-        const user = await User.findOne({email: email}).populate('role')
+        const user = await User.findOne({email: email})
 
         if(!user){
             return done(null, false);
@@ -31,3 +31,4 @@ passport.use('local-login', new LocalStrategy({
         return done(null, user);
     })
 );
+

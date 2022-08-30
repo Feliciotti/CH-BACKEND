@@ -1,5 +1,5 @@
 import { User, Role } from '../../models/index.js';
-import { transporter, generateToken } from '../../libs/index.js';
+import { transporter } from '../../libs/index.js';
 
 // -------------------------------
 async function logupForm (req, res){
@@ -38,7 +38,7 @@ async function logup(req, res){
         }
         
          // Saving user in mongodb
-        const savedUser = await newUser.save()
+        await newUser.save()
             // try {
             //     transporter.sendMail({
             //         from: "'ecommerce', <melyna2@ethereal.email>",
@@ -61,10 +61,6 @@ async function logup(req, res){
             // }catch(error){
             //     console.log(error);
             // }
-
-            const token = generateToken(savedUser._id)
-
-            console.log(newUser, token);
         
     }
 

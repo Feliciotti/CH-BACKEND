@@ -41,14 +41,13 @@ const userSchema = new Schema({
             type: Boolean,
             default: false
         },
-        role: [{
+        role: {
                 ref: 'role',
                 type: mongoose.Schema.Types.ObjectId
-        }]
+        }
     },
     {
-        timestamps: true,
-        versionKey: false,
+        timestamps: true
     }
 );
 

@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import {
     login,
-    // loginPost,
+    loginPost,
     loginError,
     logup,
     logupForm,
@@ -16,7 +16,7 @@ const log = Router ()
 
 log.route('/login')
     .get( login )
-    // .post( loginPost );
+    .post( loginPost );
 
 log.route('/login-error')
     .get( loginError );

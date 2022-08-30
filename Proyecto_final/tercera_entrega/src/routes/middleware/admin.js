@@ -1,10 +1,16 @@
-import { User } from '../../models/index.js'
+import { Role } from '../../models/index.js'
 
 const isAdmin = async (req, res, next) => {
 
-    const admin = await User.findOne({user: req.user.id}).lean()
+    const user = req.user
+    const array = []
     
-    if(admin.role != 'admin') return res.json({message: 'Regresa a la forma humilde que mereces!'})
+    array.push(user)
+    array.role = array.map(role => role.name)
+
+    //console.log(user, array.role);
+    
+    if(array.role != 'admin') return res.json({message: 'Regresa a la forma humilde que mereces!'})
 
     next()
 }
