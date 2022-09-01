@@ -1,5 +1,3 @@
-import { Role } from '../../models/index.js'
-
 const isAdmin = async (req, res, next) => {
 
     const user = req.user
