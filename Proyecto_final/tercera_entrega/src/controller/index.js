@@ -3,6 +3,7 @@ export {
     postCart,
     deleteCart,
     getCartProducts,
+    delCartProducts,
     postCartProducts
 } from './web/cart.controller.js';
 

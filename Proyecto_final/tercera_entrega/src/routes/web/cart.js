@@ -5,6 +5,7 @@ import {
     postCart,
     deleteCart,
     getCartProducts,
+    delCartProducts,
     postCartProducts
 } from '../../controller/index.js';
 import { isAuthenticated, isAdmin } from '../middleware/index.js'
@@ -23,5 +24,8 @@ cartRouter.route('/carrito/:id')
 cartRouter.route('/carrito/:id/productos')
     .get(isAuthenticated, getCartProducts )
     .post(isAuthenticated, postCartProducts);
+
+cartRouter.route('/carrito/:id/productos/:id_prod')
+    .delete(isAuthenticated, delCartProducts)
 
 export { cartRouter };

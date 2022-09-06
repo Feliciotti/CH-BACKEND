@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import bcryptjs from 'bcryptjs'
+import bcrypt from 'bcrypt';
 
 const { Schema } = mongoose;
 
@@ -17,10 +17,10 @@ const userSchema = new Schema({
             type: String,
             required: true
         },
-        // img: {
-        //     type: String,
-        //     required: true
-        // },
+        img: {
+            type: String,
+            required: true
+        },
         age: {
             type: String,
             required: true
@@ -52,11 +52,11 @@ const userSchema = new Schema({
 );
 
 userSchema.methods.encryptPassword = (password) => {
-    return bcryptjs.hashSync(password, bcryptjs.genSaltSync(10));
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
   };
 
 userSchema.methods.comparePassword = function (password) {
-    return bcryptjs.compareSync(password, this.password);
+    return bcrypt.compareSync(password, this.password);
 };
 
 const User = mongoose.model('user', userSchema);

@@ -6,8 +6,8 @@ async function logupForm (req, res){
     await res.render('logup')
 }
 
-async function logup(req, res){
-    const {name, email, password, age, address, phoneNumber, role} = req.body
+async function logup (req, res){
+    const { name, email, password, age, address, phoneNumber, role } = req.body
     const emailUser =  await User.findOne({email: email})
 
     if(emailUser){
@@ -19,7 +19,7 @@ async function logup(req, res){
             email,
             password,
             //string of img path to src/public
-            // img: req.file.path,
+            img: req.file.path,
             age,
             address,
             phoneNumber
@@ -39,28 +39,28 @@ async function logup(req, res){
         
          // Saving user in mongodb
         await newUser.save()
-            // try {
-            //     transporter.sendMail({
-            //         from: "'ecommerce', <melyna2@ethereal.email>",
-            //         to: 'melyna2@ethereal.email',
-            //         subject: 'New user registered',
-            //         html: `
-            //             <h1>New user information</h1>
-            //             <ul>
-            //                 <li>Name: ${name}</li>
-            //                 <li>e-mail: ${email}</li>
-            //                 <li>Phone number: ${phoneNumber}</li>
-            //                 <li>Address: ${address}</li>
-            //                 <li>Age: ${age}</li>
-            //                 <li>Registed at: ${Date().toLocaleString()}</li>
-            //             </ul>
-            //         `
-            //     });
-            //     console.log('sended');
+            try {
+                transporter.sendMail({
+                    from: "'ecommerce', <melyna2@ethereal.email>",
+                    to: 'melyna2@ethereal.email',
+                    subject: 'New user registered',
+                    html: `
+                        <h1>New user information</h1>
+                        <ul>
+                            <li>Name: ${name}</li>
+                            <li>e-mail: ${email}</li>
+                            <li>Phone number: ${phoneNumber}</li>
+                            <li>Address: ${address}</li>
+                            <li>Age: ${age}</li>
+                            <li>Registed at: ${Date().toLocaleString()}</li>
+                        </ul>
+                    `
+                });
+                console.log('sended');
             
-            // }catch(error){
-            //     console.log(error);
-            // }
+            }catch(error){
+                console.log(error);
+            }
         
     }
 

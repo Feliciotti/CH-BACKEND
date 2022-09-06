@@ -44,14 +44,36 @@ async function getCartProducts(req, res) {
 
 async function postCartProducts(req, res) {
     try {
-        const {id} = req.params
-        const {productId} = req.body
+        const { id } = req.params
+        const { productId } = req.body
 
         const cart = await cartsDao.getById(id)
         const product = await productsDao.getById(productId)
+
         cart.products =  [...cart.products, product]
 
         const result = await cartsDao.update(id, cart);
+        res.status(201).json(result);
+
+    } catch (error) {
+        res.json(error)
+    }
+}
+
+async function delCartProducts(req, res) {
+    try {
+        const { id } = req.params
+        const { id_prod } = req.params
+
+        const cart = await cartsDao.getById(id)
+        const productsList = cart.products
+
+        const toDelete = productsList.findIndex(product => product._id == id_prod)
+        await productsList.splice(toDelete, 1)
+
+        const result = await cartsDao.update(id, { products: productsList });
+
+
         res.status(201).json(result);
 
     } catch (error) {
@@ -73,5 +95,6 @@ export {
     postCart,
     deleteCart,
     getCartProducts,
+    delCartProducts,
     postCartProducts
 }; // to index

@@ -38,10 +38,20 @@ class MongoDao extends MongoDB {
 
     async updateById(id, newData){
         try {
-            this.collection.findOneAndUpdate({_id:ObjectId(id)}, {$set: newData})
+            Object.keys(newData).forEach(key => {
+
+                if (newData[key] === undefined) {
+
+                    delete newData[key];
+
+                }
+            
+            });
+
+            await this.collection.findOneAndUpdate({_id:ObjectId(id)}, {$set: newData});
 
         } catch (error) {
-            throw new Error(error)
+            throw new Error(error);
         }
     }
 

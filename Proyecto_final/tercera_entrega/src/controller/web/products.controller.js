@@ -19,12 +19,11 @@ async function postProduct(req, res) {
 async function putProduct(req, res){
     const { id } = req.params
     const {title, price, thumbnail, desc, stock} = req.body
-
-    const result = productsDao.update(id, {title, price, thumbnail, desc, stock})
-
     if (id === -1) res.status(404).send('No se encontró el producto')
 
-    res.status(200).json(result)
+    const updated = await productsDao.update(id, {title, price, thumbnail, desc, stock})
+
+    res.status(200).json(updated)
 }
 
 async function delProduct(req, res){

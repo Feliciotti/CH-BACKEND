@@ -41,7 +41,9 @@ class MongoService extends MongoDao{
         try {
             await super.updateById(id, newData)
 
-            return this.getById(id)
+            const updated = await this.getById(id)
+
+            return updated
 
         } catch (error) {
             throw new Error(error)

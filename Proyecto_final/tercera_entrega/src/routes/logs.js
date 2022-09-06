@@ -8,7 +8,7 @@ import {
     logupForm,
     logout
 } from '../controller/index.js'
-// import multer from '../libs/multer.js';
+import multer from '../libs/multer.js';
 
 //---------------------------------------
 
@@ -23,7 +23,7 @@ log.route('/login-error')
 
 log.route('/logup')
     .get( logupForm )
-    .post(/*multer.single('img'),*/ logup );
+    .post(multer.single('img'), logup );
 
 log.route('/logout')
     .get( logout )
