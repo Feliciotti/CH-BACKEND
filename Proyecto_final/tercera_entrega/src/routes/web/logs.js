@@ -7,8 +7,8 @@ import {
     logup,
     logupForm,
     logout
-} from '../controller/index.js'
-import multer from '../libs/multer.js';
+} from '../../controller/index.js'
+import multer from '../../libs/multer.js';
 
 //---------------------------------------
 

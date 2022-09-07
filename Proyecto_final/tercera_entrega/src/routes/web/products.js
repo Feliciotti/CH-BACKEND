@@ -13,19 +13,19 @@ import {
 
 //-------------------------------------------------
 
-const productsRouter = Router();
+const products = Router();
 
-productsRouter.route('/productos')
+products.route('/productos')
     .get(isAuthenticated, getProduct )
 
-productsRouter.route('/productos', isAdmin)
+products.route('/productos', isAdmin)
     .post(isAdmin, postProduct )
 
-productsRouter.route('/productos/:id', isAdmin)
+products.route('/productos/:id', isAdmin)
     .put(isAdmin, putProduct )
     .delete(isAdmin, delProduct )
 
-productsRouter.route('/productos/:id?')
+products.route('/productos/:id?')
     .get(isAuthenticated, getById)
 
-export { productsRouter };
+export { products };

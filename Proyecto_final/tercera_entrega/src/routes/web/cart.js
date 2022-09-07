@@ -12,20 +12,20 @@ import { isAuthenticated, isAdmin } from '../middleware/index.js'
 
 //---------------------------------------
 
-const cartRouter = Router();
+const cart = Router();
 
-cartRouter.route('/carrito')
+cart.route('/carrito')
     .get (isAuthenticated, isAdmin , getCart )
     .post(isAuthenticated, postCart );
 
-cartRouter.route('/carrito/:id')
+cart.route('/carrito/:id')
     .delete(isAuthenticated, deleteCart );
     
-cartRouter.route('/carrito/:id/productos')
+cart.route('/carrito/:id/productos')
     .get(isAuthenticated, getCartProducts )
     .post(isAuthenticated, postCartProducts);
 
-cartRouter.route('/carrito/:id/productos/:id_prod')
+cart.route('/carrito/:id/productos/:id_prod')
     .delete(isAuthenticated, delCartProducts)
 
-export { cartRouter };
+export { cart };

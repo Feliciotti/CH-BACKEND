@@ -8,14 +8,16 @@ import session from 'express-session';
 import exphbs from 'express-handlebars';
 import MongoStore from 'connect-mongo';
 import cookieParser from 'cookie-parser';
+import { Server as HttpServer } from 'http'
+import { Server as IOServer } from 'socket.io'
 
 // js files
 import {
     log,
     home,
+    cart,
     profile,
-    productsRouter,
-    cartRouter
+    products
 } from './routes/index.js';
 import './routes/middleware/passport/local.js'
 import './db/mongoose.js'
@@ -64,8 +66,8 @@ app.use('/public', express.static(path.resolve('public')));
 app.use(
     log,
     home,
-    cartRouter,
-    productsRouter,
+    cart,
+    products,
     profile
 );
 
@@ -77,3 +79,14 @@ const server = app.listen(PORT, () => {
     console.log(`Servidor http esuchando en el puerto ${server.address().port}`)
 });
 server.on("error", error => console.log(`Error en el servidor ${error}`));
+
+
+// ------------------- websockets -------------------
+const httpServer = new HttpServer(app)
+const io = new IOServer(httpServer)
+io.listen(server)
+
+//Socket settings
+io.on('connection', () => {
+    console.log('new connection');
+});

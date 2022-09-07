@@ -29,7 +29,7 @@ async function deleteCart(req, res) {
 
 async function getCartProducts(req, res) {
     try {
-        const {id} = req.params
+        const { id } = req.params
         const cartProducts = await cartsDao.getById(id)
 
         if(!cartProducts.products)
@@ -69,10 +69,10 @@ async function delCartProducts(req, res) {
         const productsList = cart.products
 
         const toDelete = productsList.findIndex(product => product._id == id_prod)
+
         await productsList.splice(toDelete, 1)
 
         const result = await cartsDao.update(id, { products: productsList });
-
 
         res.status(201).json(result);
 
