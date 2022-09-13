@@ -16,6 +16,10 @@ export {
 } from './web/products.controller.js';
 
 export {
+    postOrder
+} from './web/orders.controller.js'
+
+export {
     login,
     loginPost,
     loginError,

@@ -1,3 +1,4 @@
+import { User } from '../../models/User.model.js';
 import { productsDao, cartsDao } from '../db.controller.js';
 
 // -------------------------------
@@ -81,13 +82,6 @@ async function delCartProducts(req, res) {
     }
 }
 
-async function postOrder(req, res){
-    try{
-        
-    }catch(error) {
-
-    }
-}
 
 // -------------------------------
 export { 
