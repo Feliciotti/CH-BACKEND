@@ -52,16 +52,16 @@ async function postOrder(req, res){
 };
 
 async function getOrder (req, res) {
-//     try{
-//         const allOrders = await ordersDao.getAll()
+    try{
+        const allOrders = await ordersDao.getAll()
+        let userPurchases = await allOrders.filter(e => e.from == req.user.email)
 
-//         let buyerOrders = allOrders.map(e => e.email)
+        res.status(200).json(userPurchases)
 
-//         // console.log(buyerOrders);
 
-//     } catch (error){
-//         return error
-//     }
+    } catch (error){
+        return error
+    }
 };
 
 export {
