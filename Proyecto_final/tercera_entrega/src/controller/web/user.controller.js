@@ -2,7 +2,8 @@ import { User } from "../../models/index.js";
 
 // -------------------------------
 async function getUser(req, res){
-    const user = await User.find({user: req.user.id})
+    const user = req.user.name
+    console.log(user);
     res.render('home', { user })
 }
 

@@ -7,7 +7,7 @@ const isAdmin = async (req, res, next) => {
 
     array.role = array.map(role => role.name)
 
-    console.log(user, array.role);
+    // console.log(user, array.role);
     
     if(user.role != 'admin') return res.json({message: 'Regresa a la forma humilde que mereces!'})
 

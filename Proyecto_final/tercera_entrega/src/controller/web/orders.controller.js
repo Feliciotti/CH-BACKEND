@@ -49,8 +49,22 @@ async function postOrder(req, res){
     } catch (error) {
         res.json(error)
     }
-}
+};
+
+async function getOrder (req, res) {
+//     try{
+//         const allOrders = await ordersDao.getAll()
+
+//         let buyerOrders = allOrders.map(e => e.email)
+
+//         // console.log(buyerOrders);
+
+//     } catch (error){
+//         return error
+//     }
+};
 
 export {
+    getOrder,
     postOrder
 }

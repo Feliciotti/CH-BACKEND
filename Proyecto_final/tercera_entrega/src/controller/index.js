@@ -1,4 +1,21 @@
 export {
+    logup,
+    logupForm
+} from './logs/logup.controller.js'
+
+export {
+    login,
+    loginPost,
+    loginError,
+    logout
+} from './logs/login.controller.js'
+
+export {
+    getUser,
+    getProfile
+} from './web/user.controller.js'
+
+export {
     getCart,
     postCart,
     deleteCart,
@@ -16,22 +33,6 @@ export {
 } from './web/products.controller.js';
 
 export {
+    getOrder,
     postOrder
 } from './web/orders.controller.js'
-
-export {
-    login,
-    loginPost,
-    loginError,
-    logout
-} from './logs/login.controller.js'
-
-export {
-    logup,
-    logupForm
-} from './logs/logup.controller.js'
-
-export {
-    getUser,
-    getProfile
-} from './web/user.controller.js'
