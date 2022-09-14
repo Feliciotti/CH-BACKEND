@@ -22,6 +22,13 @@ passport.use('local-login', new LocalStrategy({
     }, async (req, email, password, done) =>{
         const user = await User.findOne({email: email})
 
+        const account = user.tokenConfirm
+
+        console.log(account);
+
+        if(account == false){
+            return done(null, false);
+        }
         if(!user){
             return done(null, false);
         }

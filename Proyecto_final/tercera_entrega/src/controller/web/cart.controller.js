@@ -24,7 +24,7 @@ async function deleteCart(req, res) {
     const { id } = req.params
     try {
         let cart = await cartsDao.getById(id)
-        if(!cart) throw new Error ('cannot found cart')
+        findCartError(cart)
 
         const deleted = await cartsDao.delete(id)
         res.send(deleted)
@@ -39,14 +39,14 @@ async function getCartProducts(req, res) {
     try {
         const cartProducts = await cartsDao.getById(id)
 
-        if(!cartProducts.products){
-            throw new Error ('cannot found cart')
+        if(!cartProducts){
+            res.status(404).json('cannot found cart')
 
-        } else if (cartProducts.length = -1) {
-            res.json('el carrito está vacío')
+        }else if(cartProducts.products.length == 0) {
+            res.status(200).json('el carrito está vacío')
 
         } else {
-            res.json(cartProducts.products)
+            res.status(200).json(cartProducts.products)
         }
 
     } catch (error) {
@@ -60,6 +60,7 @@ async function postCartProducts(req, res) {
 
     try {
         const cart = await cartsDao.getById(id)
+
         const product = await productsDao.getById(productId)
 
         cart.products =  [...cart.products, product]
