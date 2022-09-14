@@ -1,4 +1,3 @@
-import { User } from '../../models/User.model.js';
 import { productsDao, cartsDao } from '../db.controller.js';
 
 // -------------------------------
@@ -7,47 +6,59 @@ async function getCart(req, res) {
         const carts = await cartsDao.getAll()
         res.status(200).json(carts)
     } catch (error) {
-        res.json(error)
+        res.json({error: error.message})
     }
 }
 async function postCart(req, res) {
+    const { title } = req.body
     try {
-        const { title } = req.body
         const cart = await cartsDao.add({title, products: []})
 
         res.status(200).json(cart)
     } catch (error) {
-        res.json(error)
+        res.json({error: error.message})
     }
 }
 
 async function deleteCart(req, res) {
     const { id } = req.params
-    const deleted = await cartsDao.delete(id)
+    try {
+        let cart = await cartsDao.getById(id)
+        if(!cart) throw new Error ('cannot found cart')
 
-    res.send(deleted)
+        const deleted = await cartsDao.delete(id)
+        res.send(deleted)
+    } catch(error){
+        res.json({error: error.message})
+    }
+
 }
 
 async function getCartProducts(req, res) {
+    const { id } = req.params
     try {
-        const { id } = req.params
         const cartProducts = await cartsDao.getById(id)
 
-        if(!cartProducts.products)
-            return res.json({message: 'Carrito no encontrado'})
+        if(!cartProducts.products){
+            throw new Error ('cannot found cart')
 
-        res.json(cartProducts.products)
+        } else if (cartProducts.length = -1) {
+            res.json('el carrito está vacío')
+
+        } else {
+            res.json(cartProducts.products)
+        }
 
     } catch (error) {
-        res.json(error)
+        res.json({error: error.message})
     }
 }
 
 async function postCartProducts(req, res) {
-    try {
-        const { id } = req.params
-        const { productId } = req.body
+    const { id } = req.params
+    const { productId } = req.body
 
+    try {
         const cart = await cartsDao.getById(id)
         const product = await productsDao.getById(productId)
 
@@ -57,20 +68,23 @@ async function postCartProducts(req, res) {
         res.status(201).json(result);
 
     } catch (error) {
-        res.json(error)
+        res.json({error: error.message})
     }
 }
 
 async function delCartProducts(req, res) {
+    const { id } = req.params
+    const { id_prod } = req.params
+
     try {
-        const { id } = req.params
-        const { id_prod } = req.params
 
         const cart = await cartsDao.getById(id)
         const productsList = cart.products
 
-        const toDelete = productsList.findIndex(product => product._id == id_prod)
+        if(!cart) throw new Error ('cannot found cart')
 
+        const toDelete = await productsList.findIndex(product => product._id == id_prod)
+        if(!toDelete) throw new Error ('cannot found product')
         await productsList.splice(toDelete, 1)
 
         const result = await cartsDao.update(id, { products: productsList });
@@ -78,7 +92,7 @@ async function delCartProducts(req, res) {
         res.status(201).json(result);
 
     } catch (error) {
-        res.json(error)
+        res.json({error: error.message})
     }
 }
 

@@ -1,5 +1,5 @@
 import { User, Role } from '../../models/index.js';
-import { transporter } from '../../libs/index.js';
+import { transporter, generateToken } from '../../libs/index.js';
 
 // -------------------------------
 async function logupForm (req, res){
@@ -67,9 +67,25 @@ async function logup (req, res){
     res.redirect('login')
 }
 
+async function tokenConfirm(req, res) {
+    const { token } = req.params
+
+    try{
+        const user = await User.findOne({token: token})
+
+        if(!user) res.json('Invalid token')
+
+        // res.json()
+    }catch (error) {
+        res.json(error)
+    }
+
+};
+
 // -------------------------------
 
 export {
+    tokenConfirm,
     logupForm,
     logup
 }; // to index

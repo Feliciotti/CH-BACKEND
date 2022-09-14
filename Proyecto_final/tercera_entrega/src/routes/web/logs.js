@@ -2,11 +2,12 @@ import { Router } from "express";
 
 import {
     login,
-    loginPost,
-    loginError,
     logup,
+    logout,
+    loginPost,
     logupForm,
-    logout
+    loginError,
+    tokenConfirm
 } from '../../controller/index.js'
 import multer from '../../libs/multer.js';
 
@@ -27,6 +28,9 @@ log.route('/logup')
 
 log.route('/logout')
     .get( logout )
+
+log.route('/activate-account/:token')
+    .get(tokenConfirm)
 
 //---------------------------------------
 

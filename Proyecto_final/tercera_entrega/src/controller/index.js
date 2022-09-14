@@ -1,13 +1,14 @@
 export {
     logup,
-    logupForm
+    logupForm,
+    tokenConfirm
 } from './logs/logup.controller.js'
 
 export {
     login,
+    logout,
     loginPost,
     loginError,
-    logout
 } from './logs/login.controller.js'
 
 export {
