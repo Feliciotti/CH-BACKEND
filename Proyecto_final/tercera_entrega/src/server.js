@@ -5,8 +5,8 @@ import express from 'express';
 import passport from 'passport';
 import bodyParser from 'body-parser';
 import session from 'express-session';
-import exphbs from 'express-handlebars';
 import MongoStore from 'connect-mongo';
+import exphbs from 'express-handlebars';
 import cookieParser from 'cookie-parser';
 import { createServer } from 'http'
 import { Server as IOServer } from 'socket.io'
@@ -62,7 +62,6 @@ app.use(express.json());
 
 //folder to store public files (avatars)
 app.use('/public', express.static(path.resolve('public')));
-
 
 //------------------- Routes -------------------
 app.use(

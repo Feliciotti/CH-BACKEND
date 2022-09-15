@@ -11,11 +11,18 @@ async function logupForm (req, res){
 }
 
 async function logup (req, res){
-    const { name, lastname, email, password, age, address, phoneNumber, role } = req.body
+    const { name, lastname, email, password, passwordConfirm, age, address, phoneNumber, role } = req.body
 
     try {
-        const emailUser =  await User.findOne({email: email})
-        if(emailUser){
+        const emailUser = await User.findOne({email: email})
+
+        let errors = []
+        if (passwordConfirm !== password){
+            errors.push({error: 'las contraseñas no coinciden'})
+            console.log('las contraseñas no coinciden');
+            res.render('logup', { errors, name, lastname, email, password, age, address, phoneNumber })
+
+        }else if(emailUser){
             res.render('logupErr')
 
         } else {
@@ -86,9 +93,9 @@ async function logup (req, res){
                     console.log(error);
                 }
             
+                res.status(200).redirect('login')
         }
-    
-        res.redirect('login')
+
     } catch(error){
         res.json({error: error.message})
     }

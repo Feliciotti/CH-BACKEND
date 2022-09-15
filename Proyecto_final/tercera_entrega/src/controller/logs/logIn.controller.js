@@ -23,7 +23,7 @@ const loginPost =
     await passport.authenticate('local-login',
         {
             successRedirect: '/home',
-            failureRedirect: '/login-error'
+            failureRedirect: '/login'
         }
     );
 

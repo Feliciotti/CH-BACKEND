@@ -22,19 +22,17 @@ passport.use('local-login', new LocalStrategy({
     }, async (req, email, password, done) =>{
         const user = await User.findOne({email: email})
 
-        const account = user.tokenConfirm
-
-        console.log(account);
-
-        if(account == false){
-            return done(null, false);
-        }
         if(!user){
-            return done(null, false);
+            return done(null, false, console.log('user not found'));
         }
         if(!user.comparePassword(password)) {
-            return done(null, false)
+            return done(null, false, console.log('incorrect password'))
         }
+
+        if(user.tokenConfirm == false){
+            return done(null, false, console.log('account not verified'));
+        }
+
         return done(null, user);
     })
 );

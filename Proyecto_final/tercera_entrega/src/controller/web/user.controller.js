@@ -8,7 +8,9 @@ async function getUser(req, res){
 }
 
 async function getProfile(req, res) {
-    const user = await User.findOne({user: req.user.id}).lean()
+    const userId = await req.user.id
+    let user = await User.findOne({_id: userId}).lean()
+
     res.render('profile', { user })
 }
 
