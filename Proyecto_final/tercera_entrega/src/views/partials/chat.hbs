@@ -1,13 +1,13 @@
 {{#if user}}
     <div>
-        <form onsubmit="addMessage(this)">
+        <form id="addMessage">
             <h2>Chat</h2>
             {{!-- <input type="text" id="username" placeholder="e-mail" required> --}}
 
             <div id="messages"></div>
 
             <p id='user' hidden> {{user}} </p>
-            <input type="text" id="text" placeholder="consulta">
+            <input type="text" id="message" placeholder="consulta">
             <input type="submit" id="submitBtn" value="Enviar">
         </form>
     </div>

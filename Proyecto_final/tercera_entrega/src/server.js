@@ -24,6 +24,7 @@ import {
 import './routes/middleware/passport/local.js'
 import './db/mongoose.js'
 import { createRoles } from './libs/rolesSetup.js'
+import sockets from './libs/websockets.server.js'
 
 //------------------- server settings -------------------
 //initialization
@@ -32,6 +33,7 @@ createRoles()
 // websockets
 const httpServer = createServer(app)
 const io = new IOServer(httpServer)
+sockets(io)
 
 //Session settings
 app.use(cookieParser());
@@ -63,7 +65,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
-//folder to store public files (avatars)
+//folder to store public files (avatars  // websocket client)
 app.use('/public', express.static(path.resolve('public')));
 
 //------------------- Routes -------------------
