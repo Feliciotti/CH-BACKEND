@@ -29,6 +29,9 @@ import { createRoles } from './libs/rolesSetup.js'
 //initialization
 const app = express();
 createRoles()
+// websockets
+const httpServer = createServer(app)
+const io = new IOServer(httpServer)
 
 //Session settings
 app.use(cookieParser());
@@ -76,14 +79,7 @@ app.use(
 // ------------------- PORT -------------------
 const PORT = process.env.PORT || 4000
 
-const server = app.listen(PORT, () => {
+const server = httpServer.listen(PORT, () => {
     console.log(`Servidor http esuchando en el puerto ${server.address().port}`)
 });
 server.on("error", error => console.log(`Error en el servidor ${error}`));
-
-
-// ------------------- websockets -------------------
-const httpServer = createServer(app)
-const io = new IOServer(httpServer)
-io.listen(server)
-

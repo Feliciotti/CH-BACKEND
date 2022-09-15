@@ -1,10 +1,11 @@
 import { cartsDao, ordersDao } from '../db.controller.js';
-import { transporter } from '../../libs/index.js';
+import { transporter, client } from '../../libs/index.js';
 
 async function postOrder(req, res){
     try {
         const { cart_id } = req.body
         const buyer = await req.user.email
+        console.log(req.user.phoneNumber);
         const buyerCart = await cartsDao.getById(cart_id)
 
         let buyerSelection = buyerCart.products.map(e => e.title)
@@ -39,6 +40,15 @@ async function postOrder(req, res){
                     `
                 });
                 console.log('sended');
+
+                client.messages 
+                    .create({ 
+                        body: 'orden generada', 
+                        from: 'whatsapp:+14155238886',       
+                        to: req.user.phoneNumber 
+                    }) 
+                    .then(message => console.log(message.sid)) 
+                    .done();
             
             }catch(error){
                 console.log(error);

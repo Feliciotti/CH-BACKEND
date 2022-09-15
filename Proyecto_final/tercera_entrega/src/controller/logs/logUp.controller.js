@@ -1,7 +1,6 @@
 import { User, Role } from '../../models/index.js';
 import { transporter, generateToken } from '../../libs/index.js';
 
-
 // -------------------------------
 let adminemail = process.env.NODEMAILER
 let port = process.env.PORT
@@ -11,19 +10,24 @@ async function logupForm (req, res){
 }
 
 async function logup (req, res){
-    const { name, lastname, email, password, passwordConfirm, age, address, phoneNumber, role } = req.body
+    const { name, lastname, email, password,
+    passwordConfirm, age, address, phoneNumber, role } = req.body
 
     try {
         const emailUser = await User.findOne({email: email})
 
         let errors = []
+        const errorRes = res.render('logup', { errors, name, lastname, email, password, age, address, phoneNumber })
+        
         if (passwordConfirm !== password){
-            errors.push({error: 'las contraseñas no coinciden'})
-            console.log('las contraseñas no coinciden');
-            res.render('logup', { errors, name, lastname, email, password, age, address, phoneNumber })
+            errors.push({error: 'las contraseñas no coinciden'}),
+            console.log('las contraseñas no coinciden'),
+            errorRes
 
         }else if(emailUser){
-            res.render('logupErr')
+            errors.push({error: 'email ya registrado'}),
+            console.log('email ya registrado'),
+            errorRes
 
         } else {
             //creating new user
@@ -101,6 +105,7 @@ async function logup (req, res){
     }
 }
 
+//account validation
 async function tokenConfirm(req, res) {
     const { token } = req.params
 
