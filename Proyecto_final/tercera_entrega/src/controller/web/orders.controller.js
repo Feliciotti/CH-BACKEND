@@ -45,7 +45,7 @@ async function postOrder(req, res){
                     .create({ 
                         body: 'orden generada', 
                         from: 'whatsapp:+14155238886',       
-                        to: req.user.phoneNumber 
+                        to: `whatsapp:${req.user.phoneNumber}` 
                     }) 
                     .then(message => console.log(message.sid)) 
                     .done();

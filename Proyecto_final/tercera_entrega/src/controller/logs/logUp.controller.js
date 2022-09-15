@@ -17,17 +17,16 @@ async function logup (req, res){
         const emailUser = await User.findOne({email: email})
 
         let errors = []
-        const errorRes = res.render('logup', { errors, name, lastname, email, password, age, address, phoneNumber })
-        
+
         if (passwordConfirm !== password){
             errors.push({error: 'las contraseñas no coinciden'}),
             console.log('las contraseñas no coinciden'),
-            errorRes
+            res.render('logup', { errors, name, lastname, email, password, age, address, phoneNumber })
 
         }else if(emailUser){
             errors.push({error: 'email ya registrado'}),
             console.log('email ya registrado'),
-            errorRes
+            res.render('logup', { errors, name, lastname, email, password, age, address, phoneNumber })
 
         } else {
             //creating new user
@@ -58,6 +57,7 @@ async function logup (req, res){
             
              // Saving user in mongodb
             await newUser.save()
+            console.log(newUser.email);
                 try {
                     //mail for user to activate account
                     transporter.sendMail({
@@ -119,7 +119,7 @@ async function tokenConfirm(req, res) {
 
         await user.save()
 
-        res.status(200).json('activated account')
+        res.status(200).json('account activated')
     }catch (error) {
         res.json(error)
     }

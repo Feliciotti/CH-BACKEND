@@ -1,13 +1,17 @@
+import { messagesDao } from "../controller/db.controller.js";
+
 export default (io) => {
-    io.on('connection', async function(socket) {    
+    io.on('connection', (socket) => {    
         
         console.log('A client is on line');
 
-        socket.emit('messages', messages);
-        socket.on('new-message', (data) => {
-            mssgs.save(data);
-            io.sockets.emit('messages', messages);
-        });
+        // const emitMessages = async() =>{
+        //     const messages = await messagesDao.getAll()
+        //     console.log(messages);
+        //     io.emit('messages', messages)
+        // }
+        // emitMessages()
+
     });
 
 }
