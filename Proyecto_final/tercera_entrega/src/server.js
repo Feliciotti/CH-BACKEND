@@ -16,6 +16,7 @@ import { Server as IOServer } from 'socket.io'
 import {
     log,
     home,
+    chat,
     cart,
     order,
     profile,
@@ -73,6 +74,7 @@ app.use(
     log,
     home,
     cart,
+    chat,
     order,
     products,
     profile

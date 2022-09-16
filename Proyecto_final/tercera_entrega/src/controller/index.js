@@ -2,19 +2,19 @@ export {
     logup,
     logupForm,
     tokenConfirm
-} from './logs/logup.controller.js'
+} from './logs/logup.controller.js';
 
 export {
     login,
     logout,
     loginPost,
     loginError,
-} from './logs/login.controller.js'
+} from './logs/login.controller.js';
 
 export {
     getUser,
     getProfile
-} from './web/user.controller.js'
+} from './web/user.controller.js';
 
 export {
     getCart,
@@ -36,4 +36,8 @@ export {
 export {
     getOrder,
     postOrder
-} from './web/orders.controller.js'
+} from './web/orders.controller.js';
+
+export {
+    renderChat
+} from './web/chat.controller.js';

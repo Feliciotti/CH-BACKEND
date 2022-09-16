@@ -1,31 +1,41 @@
-// const socket = io.connect();
+const socket = io()
 
-// function render(data) {
-//     const html = data.map(element => {
-//         return (` <div>
-//         <strong style="color:blue">${element.user}</strong>
-//         <span style="color:brown">[${element.date}]:<span>
-//         <em style="color:green">${element.messages.message}</em>
-//             </div>`);
-//     }).join(" ");
-//     document.getElementById('messages').innerHTML = html
-// }
+socket.on('loadMssgs', (data) =>{
+    console.log(data);
+})
 
-// socket.on('messages', function (data) {render(data)});
+const chat = document.querySelector('#chat')
+chat.addEventListener('submit', (e) => {
+    e.preventDefault()
 
-// const addMessage = document.getElementById('addMessage')
-// addMessage.addEventListener('submit', e => {
-//     e.preventDefault()
+    let commentDate = new Date().toLocaleString()
+    const message = {title: document.getElementById('user').value,
+                    date: commentDate,
+                    messages: {
+                        message: document.getElementById('message').value
+                    }
+                };
+    
+    console.log(
+        document.getElementById('user').value,
+        document.getElementById('message').value
+    );
 
-//     const commentDate = new Date().toLocaleString()
-//     const message = {
-//                     user: document.getElementById('user').value,
-//                     date: commentDate,
-//                     messages: {
-//                         message: document.getElementById('message').value
-//                     }
-//                 }
+    socket.emit('newMssg', message);
+    chat.reset()
+})
 
-//     socket.emit('new-message', message);
-//     addMessage.reset()
-// });
+function showMssgs(data) {
+    const html = data.map(e => {
+        return (` <div>
+        <strong style="color:blue">${e.title}</strong>
+        <span style="color:brown">[${e.date}]:<span>
+        <em style="color:green">${e.messages.message}</em>
+            </div>`);
+    }).join(" ");
+    document.getElementById('messages').innerHTML = html
+}
+
+socket.on('loadMssgs', messages => {
+    showMssgs(messages)
+})
