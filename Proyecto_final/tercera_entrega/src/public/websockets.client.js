@@ -1,30 +1,5 @@
 const socket = io()
 
-socket.on('loadMssgs', (data) =>{
-    console.log(data);
-})
-
-const chat = document.querySelector('#chat')
-chat.addEventListener('submit', (e) => {
-    e.preventDefault()
-
-    let commentDate = new Date().toLocaleString()
-    const message = {title: document.getElementById('user').value,
-                    date: commentDate,
-                    messages: {
-                        message: document.getElementById('message').value
-                    }
-                };
-    
-    console.log(
-        document.getElementById('user').value,
-        document.getElementById('message').value
-    );
-
-    socket.emit('newMssg', message);
-    chat.reset()
-})
-
 function showMssgs(data) {
     const html = data.map(e => {
         return (` <div>
@@ -36,6 +11,22 @@ function showMssgs(data) {
     document.getElementById('messages').innerHTML = html
 }
 
-socket.on('loadMssgs', messages => {
-    showMssgs(messages)
+socket.on('server:mssg', newMssg => {
+    showMssgs(newMssg)
+})
+
+const chat = document.querySelector('#chat')
+chat.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    let commentDate = new Date().toLocaleString()
+    const mssg = {title: document.getElementById('user').value,
+                    date: commentDate,
+                    messages: {
+                        message: document.getElementById('message').value
+                    }
+                };
+    socket.emit('client:mssg', mssg);
+    chat.reset()
+    return false
 })
